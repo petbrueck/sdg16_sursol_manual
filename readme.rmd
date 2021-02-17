@@ -1,6 +1,6 @@
 ---
 title: "Manual - SDG16 Survey Solutions Questionnaire Template "
-date: "First draft as of 15/02/2021. To be extended and improved!"
+date: "First draft as of 17/02/2021. To be extended and improved!"
 output:
   github_document:
     toc: true
@@ -12,7 +12,7 @@ output:
 
 The following manual aims to provide an overview on necessary steps to be taken to adjust the CAPI/CATI questionnaire template script of the SDG16 Survey Module using [Survey Solutions](https://mysurvey.solutions/) and its [Designer component](https://designer.mysurvey.solutions). 
 
-This, as a minimum, usually entails revising the cover page and its identifying questions as well as adapting specific questions or categorical answer options to the local context. The paper-based SDG16 Survey-based Indicators Questionnaire as well as the sections that describe the questionnaire modules in the Implementation Manual highlight all items that need to be considered and should be the main reference point for contextualization of questions and answer options. 
+This, as a minimum, usually entails revising the cover page and its identifying questions as well as adapting specific questions or categorical answer options to the local context. The paper-based SDG16 Survey-based Indicators Questionnaire as well as the sections that describe the questionnaire modules in the Implementation Manual highlight all items that need to be considered and should be the main reference point for contextualization of questions and answer options itself. 
 
 Please note that the following guideline does not provide an introduction or training on the use of the Designer itself. Instead, some experience and a basic understanding of the Designer and its capabilities is assumed.
 
@@ -82,19 +82,17 @@ Nevertheless, if you are new to Survey Solutions, please find a list of useful l
 
 ### Accessing the template script
 
-To get access to the script itself, you need to share your Survey Solutions credentials with the person who is the owner of the Survey Solutions script of the SDG16 module. As of February 2021, kindly approach [Peter Brueckmann](p.brueckmann@mailbox.org).
+To get access to the script itself, you need to share your Survey Solutions credentials with the person who is the owner of the Survey Solutions script of the SDG16 module. As of February 2021, kindly approach [Peter Brueckmann](mailto:p.brueckmann@mailbox.org).
 
 If you are not registered yet, please follow the steps described [here](https://docs.mysurvey.solutions/questionnaire-designer/interface/registration-and-signing-in/).
 
-After you have received a questionnaire sharing notification in your mail, log in at https://designer.mysurvey.solutions
+1. After you have received a questionnaire sharing notification in your mail, log in at https://designer.mysurvey.solutions
 
-On your [Questionnaire Designer Homepage](https://docs.mysurvey.solutions/questionnaire-designer/interface/questionnaire-designer-homepage/), click on the Tab "Questionnaires shared with me" at the top. The SDG16 module questionnaire template should be displayed there.
+2. On your [Questionnaire Designer Homepage](https://docs.mysurvey.solutions/questionnaire-designer/interface/questionnaire-designer-homepage/), click on the Tab "Questionnaires shared with me" at the top. The SDG16 module questionnaire template should be displayed there.
 
-Click on the name of the questionnaire to access the questionnaire script itself. 
+3. Click on the name of the questionnaire to access the questionnaire script itself. 
 
-Please note, you will only receive "view" access. This means that you will be able to view and [test](https://docs.mysurvey.solutions/questionnaire-designer/testing/testing-your-questionnaire-with-the-online-tester/) the questionnaire content, but not be able to modify nor share the template itself. 
-
-To be able to adjust the template to your projects context and needs, you will need to create a copy of the questionnaire. See below. 
+Please note, you will only receive "view" access. This means that you will be able to view and [test](https://docs.mysurvey.solutions/questionnaire-designer/testing/testing-your-questionnaire-with-the-online-tester/) the questionnaire content, but not be able to modify nor share the template itself. To work on your own questionnaire, you will need to create a copy.  See below. 
 
 ### Copy the questionnaire script
 
@@ -115,7 +113,7 @@ Once you copied the template, you will be redirected to the script itself. As a 
 
 Most importantly, users should rename the [questionnaire variable](https://docs.mysurvey.solutions/questionnaire-designer/components/questionnaire-variable/) following [requirements for variable names](https://docs.mysurvey.solutions/questionnaire-designer/components/variable-names/). 
 
-You can also use the settings interface to [share](https://docs.mysurvey.solutions/questionnaire-designer/interface/share-questionnaire/) your questionnaire version with colleagues. 
+You can also use the settings interface to [share](https://docs.mysurvey.solutions/questionnaire-designer/interface/share-questionnaire/) your questionnaire with colleagues. 
 
 
 ## Adjusting the template
@@ -165,5 +163,27 @@ By default, Survey Solutions automatically exports the question text as its [var
 It is up to the user to provide other specific labels which will be associated to the variable name when exporting the data to a statistical software package.
 
 ### Section specific hints
+
+#### Introduction (INT)
+
+* <b>URB: Level of urbanisation</b>  
+This question has [question scope](https://docs.mysurvey.solutions/questionnaire-designer/questions/question-scope-/) HIDDEN in the template and is therefore destined to be pre-filled during creation of assignments. Decide if you want to change the question scope to Interviewer or Supervisor. You could also discuss to delete this question from the interview script itself and rather create it during data analysis. 
+
+* <b>datetime_interview</b>  
+This [Date](https://docs.mysurvey.solutions/questionnaire-designer/questions/date-question/) question aims to capture current date and time when interviewer are starting the interview. Based on the value/answer of this question, Survey Solutions will render dynamically various reference periods across the questionnaire using [text substitution](https://docs.mysurvey.solutions/questionnaire-designer/techniques/text-substitution/).  
+Those reference periods are stored in the following variables which are placed into the Introduction (INT) section:  
+  * <i>yoi</i> - Year of Interview (e.g. "2021")
+  * <i>yoi_minus2</i> - Year of Interview minus 2 years (e.g. "2019")
+  * <i>yoi_minus5</i> - Year of Interview minus 5 years (e.g. "2016")
+  * <i>myoi_minus1</i> - Month and Year of Interview minus 1 year (e.g "August 2020")
+
+  Since it is important to capture an answer to <i>datetime_interview</i>, the current template contains a static text which is displayed until an answer is recorded. Interviewers will not be displayed the consent form and consent question until then. Adjust the respective enabling conditions if deemed necessary. 
+
+* <b>INT1/Consent Form</b>  
+The Introduction Text / Consent Form is stored in a static text. Users are advised to revise it substantially according to local protocols and best practices! For example, delete/revise the existing placeholders, e.g. the approximate amount of minutes needed for the interview. 
+
+* <b>Consent</b>  
+The consent is obtained through a simple Yes/No question. You can also consider to obtain verbally recorded consent through the use of question type [Audio](https://docs.mysurvey.solutions/questionnaire-designer/questions/audio-question/) or written consent using the [Picture](https://docs.mysurvey.solutions/questionnaire-designer/questions/picture-question/) question along with its [signature capture](https://docs.mysurvey.solutions/questionnaire-designer/questions/capturing-signatures-with-a-picture-question/) feature. 
+
 
 To be continued (soon)
