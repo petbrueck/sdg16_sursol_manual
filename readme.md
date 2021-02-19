@@ -9,9 +9,7 @@ First draft as of 17/02/2021. To be extended and improved!
     -   [Adust the questionnaire
         settings](#adust-the-questionnaire-settings)
 -   [Adjusting the template](#adjusting-the-template)
-    -   [Cover Page](#cover-page)
-    -   [Placeholders](#placeholders)
-    -   [Variable labels](#variable-labels)
+    -   [General notes](#general-notes)
     -   [Section specific hints](#section-specific-hints)
 
 ## Introduction
@@ -127,10 +125,12 @@ provided by the Survey Solutions team at
 
 ### Accessing the template script
 
-To get access to the script itself, you need to share your Survey
-Solutions credentials with the person who is the owner of the Survey
-Solutions script of the SDG16 module. As of February 2021, kindly
-approach [Peter Brueckmann](mailto:p.brueckmann@mailbox.org).
+Before this questionnaire template will be made publicly available after
+the pilot stage, you need to share your <u>Survey Solutions
+credentials</u> with the person who is the owner of the Survey Solutions
+script of the SDG16 module to get access to the script itself. As of
+February 2021, kindly approach [Peter
+Brueckmann](mailto:p.brueckmann@mailbox.org).
 
 If you are not registered yet, please follow the steps described
 [here](https://docs.mysurvey.solutions/questionnaire-designer/interface/registration-and-signing-in/).
@@ -151,7 +151,7 @@ will be able to view and
 [test](https://docs.mysurvey.solutions/questionnaire-designer/testing/testing-your-questionnaire-with-the-online-tester/)
 the questionnaire content, but not be able to modify nor share the
 template itself. To work on your own questionnaire, you will need to
-create a copy. See below.
+create a copy. See [below](#copy-the-questionnaire-script).
 
 ### Copy the questionnaire script
 
@@ -178,7 +178,7 @@ To do so,
 ### Adust the questionnaire settings
 
 Once you copied the template, you will be redirected to the script
-itself. As a first step, ssers are advised to adjust the questionnaire
+itself. As a first step, users are advised to adjust the questionnaire
 settings. See
 [here](https://docs.mysurvey.solutions/questionnaire-designer/interface/settings/)
 for a detailed description on how to access and adjust the settings.
@@ -208,7 +208,70 @@ advised to keep track on the changes made, e.g. through the Word Track
 Change feature, so that they can be reflected in the CAPI/CATI script as
 well.
 
-### Cover Page
+### General notes
+
+#### Placeholders
+
+Both throughout the paper-based as well as Survey Solutions CAPI/CATI
+template, various placeholders have been included to allow for a simple
+adjustment of the questionnaire content to a country-specific context.
+
+Within the Survey Solutions script, these placeholders are indicated
+through \[!!!NAME OF THE PLACEHOLDER!!!\]. Using the [Find and
+Replace](https://docs.mysurvey.solutions/questionnaire-designer/interface/find-and-replace-/)
+feature and the respective unique names of the placeholder will allow to
+adjust reoccurring text objects swiftly.
+
+Please find below a list of placeholders that reocurr multiple times.
+Users are advised to Find and Replace those at the beginning of the
+adaption process. Additional placeholders which are less frequent will
+be mentioned in the [section specific hints](#section-specific-hints)
+
+<details>
+<summary>
+Click to see the list of placeholders
+</summary>
+
+-   <b>\[!!!INSERTCOUNTRY!!!\]</b>  
+    This text item is to be used across the questionnaire in various
+    question texts as well as interviewer instructions. This includes
+    the Introduction Text, SCR1, EPE1 or PHV0, among others. Replace it
+    with the respective country name in which the questionnaire is to be
+    used. Discuss with your team which notation to use.  
+    For example, for a project in the United Republic of Tanzania, one
+    could find “\[!!!INSERTCOUNTRY!!!\]” and replace with “Tanzania”
+
+-   <b>\[!!!INSERT COUNTRY NATIONALITY!!!\]</b>  
+    Similar to placeholder above, denotes the applicable nationality
+    (e.g. at D5). Based on the Tanzania example one could find
+    “\[!!!INSERT COUNTRY NATIONALITY!!!\]” and replace with “Tanzanian”
+
+-   <b>\[!!!LOCAL CURRENCY!!!\]</b>  
+    Denotes the currency in which interviewer/respondents should report
+    values, e.g. used at question D4. Replace with the short form of a
+    countries currency.
+
+</details>
+
+#### Variable labels
+
+By default, Survey Solutions automatically exports the question text as
+its [variable
+label](https://docs.mysurvey.solutions/questionnaire-designer/questions/general-component-properties/#variable%20label).
+Therefore, the large majority of questions in the SDG16 module template
+are not labeled. This usually facilitates data analysis if end-users can
+see the question text itself in the data.
+
+It is up to the user to provide other specific labels which will be
+associated to the variable name when exporting the data to a statistical
+software package.
+
+### Section specific hints
+
+<details>
+<summary>
+<b>Cover Page</b>
+</summary>
 
 The Cover Page is a distinct feature within the Survey Solutions
 application and will require substantial revision by the user.
@@ -237,65 +300,13 @@ The template lists three exemplary Text Questions that can be used to
 denote specific administrative levels. Users can delete those and or add
 additional (types) of questions.
 
-### Placeholders
-
-Both throughout the paper-based as well as Survey Solutions CAPI/CATI
-template, various placeholders have been included to allow for a simple
-adjustment of the questionnaire content to a country-specific context.
-
-Within the Survey Solutions script, these placeholders are indicated
-through \[!!!NAME OF THE PLACEHOLDER!!!\]. Using the [Find and
-Replace](https://docs.mysurvey.solutions/questionnaire-designer/interface/find-and-replace-/)
-feature and the respective unique names of the placeholder will allow to
-adjust reoccurring text objects swiftly.
-
-Please find below a list of all placeholders that users are strongly
-advised to Find and Replace during the adaption process.
-
+</details>
 <details>
 <summary>
-Click to see the list of placeholders
+<b>Introduction (INT)</b>
 </summary>
 
--   <b>\[!!!INSERTCOUNTRY!!!\]</b>  
-    This text item is to be used across the questionnaire in various
-    question texts as well as interviewer instructions. This includes
-    the Introduction Text, SCR1, EPE1 or PHV0, among others. Replace it
-    with the respective country name in which the questionnaire is to be
-    used. Discuss with your team which notation to use.  
-    For example, for a project in the United Republic of Tanzania, one
-    could find “\[!!!INSERTCOUNTRY!!!\]” and replace with “Tanzania”
-
--   <b>\[!!!INSERT COUNTRY NATIONALITY!!!\]</b>  
-    Similar to placeholder above, denotes the applicable nationality
-    (e.g. at D5). Based on the Tanzania example one could find
-    “\[!!!INSERT COUNTRY NATIONALITY!!!\]” and replace with “Tanzanian”
-
--   <b>\[!!!LOCAL CURRENCY!!!\]</b>  
-    Denotes the currency in which interviewer/respondents should report
-    values, e.g. used at question D4. Replace with the short form of a
-    countries currency.
-
-</details>
-
-### Variable labels
-
-By default, Survey Solutions automatically exports the question text as
-its [variable
-label](https://docs.mysurvey.solutions/questionnaire-designer/questions/general-component-properties/#variable%20label).
-Therefore, the large majority of questions in the SDG16 module template
-are not labeled. This usually facilitates data analysis if end-users can
-see the question text itself in the data.
-
-It is up to the user to provide other specific labels which will be
-associated to the variable name when exporting the data to a statistical
-software package.
-
-### Section specific hints
-
-#### Introduction (INT)
-
--   <b>URB: Level of urbanisation</b>  
+-   <b>urb (Level of urbanisation)</b>  
     This question has [question
     scope](https://docs.mysurvey.solutions/questionnaire-designer/questions/question-scope-/)
     HIDDEN in the template and is therefore destined to be pre-filled
@@ -336,7 +347,7 @@ software package.
     existing placeholders, e.g. the approximate amount of minutes needed
     for the interview.
 
--   <b>Consent</b>  
+-   <b>consent</b>  
     The consent is obtained through a simple Yes/No question. You can
     also consider to obtain verbally recorded consent through the use of
     question type
@@ -346,5 +357,60 @@ software package.
     question along with its [signature
     capture](https://docs.mysurvey.solutions/questionnaire-designer/questions/capturing-signatures-with-a-picture-question/)
     feature.
+
+</details>
+<details>
+<summary>
+<b>Socio-demographic variables</b>
+</summary>
+
+-   <b>d2</b>  
+    Validation condition 3: Checks if respondent is younger than 18
+    years. Adjust if you include younger respondents in your sample.
+
+-   <b>d3</b>  
+    Category Titles should be mapped to nationally relevant types of
+    education levels
+
+-   <b>d0</b> and <b>d1</b>  
+    Add “intersex” only if country allowed intersex as a third gender on
+    birth certificates
+
+-   <b>d4\_cat</b>  
+    Update category titles based on national household level income
+    statistics
+
+-   <b>d4\_exp</b>  
+    Don’t forget to adjust the placeholders “…\[!!!FILL IN AMOUNT
+    HERE!!!\] \[!!!LOCAL CURRENCY!!!\]..” based on 25% of the monthly
+    relative poverty threshold for a household of one component
+
+-   <b>d6\_a</b>, <b>d6b</b> and <b>d6c</b>  
+    Update category title for category value 1: Decide if “(The current
+    territory of)” to be removed
+
+-   <b>d7</b>  
+    Update category titles that are usually used to clarify ethnic /
+    racial background
+
+-   <b>d9</b>  
+    Update category titles with nationally relevant denominations
+
+-   <b>d12 (Proxy Respondent)</b>  
+    Consider to add instructions based on the protocol that you define
+    for proxy respondents. For now, a simple static text is enabled if
+    `d12==2`. Consider to revise the text of the existing static text,
+    add additional questions and/or static texts etc..
+
+    Please note: If you will not allow for proxy respondents, i.e. the
+    interview shall be completed if `d12==2`, you’d need to update all
+    enabling conditions for all subsequent sections to
+
+        //Ask this section only if consent has been given and respondent answering him/herself  
+        consent==1 && d12==1  
+
+</details>
+
+<br>
 
 To be continued (soon)
