@@ -356,7 +356,13 @@ additional (types) of questions.
     [Picture](https://docs.mysurvey.solutions/questionnaire-designer/questions/picture-question/)
     question along with its [signature
     capture](https://docs.mysurvey.solutions/questionnaire-designer/questions/capturing-signatures-with-a-picture-question/)
-    feature.
+    feature.  
+    Consider to add questions or static texts if respondents refuse to
+    provide consent (`consent==2`). This often implies displaying
+    instructions in static texts to interviewers that provide
+    information on how to proceed, e.g. completing the interview and
+    informing their supervisor, or asking the interviewer for reasons of
+    refusal.
 
 </details>
 <details>
@@ -368,13 +374,21 @@ additional (types) of questions.
     Validation condition 3: Checks if respondent is younger than 18
     years. Adjust if you include younger respondents in your sample.
 
--   <b>d3</b>  
-    Category Titles should be mapped to nationally relevant types of
-    education levels
+-   <b>d3</b>
+
+    -   Category Titles should be mapped to nationally relevant types of
+        education levels
+    -   Consider to add validation conditions based on age reported in
+        <i>d2</i>
 
 -   <b>d0</b> and <b>d1</b>  
     Add “intersex” only if country allowed intersex as a third gender on
     birth certificates
+
+-   <b>d4</b>  
+    Consider to add validation conditions to flag error or provide
+    warnings if very low or high values are reported. Must be based on
+    local currency / income distribution.
 
 -   <b>d4\_cat</b>  
     Update category titles based on national household level income
@@ -410,7 +424,25 @@ additional (types) of questions.
         consent==1 && d12==1  
 
 </details>
+<details>
+<summary>
+<b>General screeners (SCR)</b>
+</summary>
 
-<br>
+This section contains several questions that are referenced throughout
+the questionnaire. If questions are dropped, carefully revise if this
+has consequences in subsequent sections.
 
-To be continued (soon)
+-   Variable <b>ips</b>  
+    This variable is a dummy that takes values “1” and “0”. It resembles
+    the family intimate partner status. According to the paper
+    questionnaire, it takes value 1 if any response to question
+    `src3_a`, `src3_b` or `src3_c` is “Yes”. The expression makes use of
+    the C\# [conditional expression
+    operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other).
+    Carefully revise the expression if any of `src3_a`, `src3_b` or
+    `src3_c` are dropped or revised.
+
+</details>
+
+<br> To be continued (soon)
