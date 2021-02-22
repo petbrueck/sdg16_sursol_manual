@@ -134,14 +134,14 @@ Please find below a list of placeholders that reocurr multiple times. Users are 
 <details>
   <summary>Click to see the list of placeholders</summary>
 
-* <b>[!!!INSERTCOUNTRY!!!]</b>  
+* <b>`[!!!INSERTCOUNTRY!!!]`</b>  
 This text item is to be used across the questionnaire in various question texts as well as interviewer instructions. This includes the Introduction Text, SCR1, EPE1 or PHV0, among others. Replace it with the respective country name in which the questionnaire is to be used. Discuss with your team which notation to use.  
 For example, for a project in the United Republic of Tanzania, one could find "[!!!INSERTCOUNTRY!!!]" and replace with "Tanzania"
 
-* <b>[!!!INSERT COUNTRY NATIONALITY!!!]</b>  
+* <b>`[!!!INSERT COUNTRY NATIONALITY!!!]`</b>  
 Similar to placeholder above, denotes the applicable nationality (e.g. at D5). Based on the Tanzania example one could find "[!!!INSERT COUNTRY NATIONALITY!!!]" and replace with "Tanzanian"
  
-* <b>[!!!LOCAL CURRENCY!!!]</b>  
+* <b>`[!!!LOCAL CURRENCY!!!]`</b>  
 Denotes the currency in which interviewer/respondents should report values, e.g. used at question D4. Replace with the short form of a countries currency. 
 </details>
 
@@ -176,12 +176,12 @@ This question has [question scope](https://docs.mysurvey.solutions/questionnaire
 * <b>datetime_interview</b>  
 This [Date](https://docs.mysurvey.solutions/questionnaire-designer/questions/date-question/) question aims to capture current date and time when interviewer are starting the interview. Based on the value/answer of this question, Survey Solutions will render dynamically various reference periods across the questionnaire using [text substitution](https://docs.mysurvey.solutions/questionnaire-designer/techniques/text-substitution/).  
 Those reference periods are stored in the following variables which are placed into the Introduction (INT) section:  
-  * <i>yoi</i> - Year of Interview (e.g. "2021")
-  * <i>yoi_minus2</i> - Year of Interview minus 2 years (e.g. "2019")
-  * <i>yoi_minus5</i> - Year of Interview minus 5 years (e.g. "2016")
-  * <i>myoi_minus1</i> - Month and Year of Interview minus 1 year (e.g "August 2020")
+  * `yoi` - Year of Interview (e.g. "2021")
+  * `yoi_minus2` - Year of Interview minus 2 years (e.g. "2019")
+  * `yoi_minus5` - Year of Interview minus 5 years (e.g. "2016")
+  * `myoi_minus1` - Month and Year of Interview minus 1 year (e.g "August 2020")
 
-  Since it is important to capture an answer to <i>datetime_interview</i>, the current template contains a static text which is displayed until an answer is recorded. Interviewers will not be displayed the consent form and consent question until then. Adjust the respective enabling conditions if deemed necessary. 
+  Since it is important to capture an answer to `datetime_interview`, the current template contains a static text which is displayed until an answer is recorded. Interviewers will not be displayed the consent form and consent question until then. Adjust the respective enabling conditions if deemed necessary. 
 
 * <b>INT1/Consent Form</b>  
 The Introduction Text / Consent Form is stored in a static text. Users are advised to revise it substantially according to local protocols and best practices! For example, delete/revise the existing placeholders, e.g. the approximate amount of minutes needed for the interview. 
@@ -199,7 +199,7 @@ Validation condition 3: Checks if respondent is younger than 18 years. Adjust if
 
 * <b>d3</b>  
   * Category Titles should be mapped to nationally relevant types of education levels
-  * Consider to add validation conditions based on age reported in <i>d2</i>
+  * Consider to add validation conditions based on age reported in `d2`
 
 * <b>d0</b> and <b>d1</b>  
 Add "intersex" only if country allowed intersex as a third gender on birth certificates
@@ -240,6 +240,40 @@ This section contains several questions that are referenced throughout the quest
 
 * Variable <b>ips</b>  
 This variable is a dummy that takes values "1" and "0". It resembles the family intimate partner status. According to the paper questionnaire, it takes value 1 if any response to question `src3_a`, `src3_b` or `src3_c` is "Yes". The expression makes use of the C# [conditional expression operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other). Carefully revise the expression if any of `src3_a`, `src3_b` or `src3_c` are dropped or revised. 
+</details>  
+
+
+
+<details>
+  <summary><b>Governance</b></summary>  
+  
+* <b>cv4_a</b>  and <b>cv4_b</b>  
+Adjust category title for category value 1 based on election cycle in country. 
+
+* <b>Introduction text</b> for sub-section <i>Last experience of public services (SPS)</i>  
+Adjust placeholder `[!!!PUBLICHEALTHCLINIC!!!]` 
+
+* <b>sps_e1</b>
+Revise age range (4-16 years old) with the appropriate age range spanning primary and secondary education in the country
+
+* <b>sps_g1/sps_g2/sps_g5</b>, and <b>sps_g3/sps_g6</b>  
+Government-issued identification documents need to be tailored to national context. If additional documents are listed, a new question for SPS.G3 needs to be added, e.g. `sps_g3_f`. In addition, include the respective document to the list of categorical answers at `sps_g6`.
+
+</details>  
+
+
+<details>
+  <summary><b>Corruption</b></summary>  
+  
+* <b>CR2_SUM</b>  
+This variable sums up the number of YES responses to questions `cr2_*`. It reflects the number of domains where bribery has occurred in the past 12 months. 
+If a new type of official is added and therefore a new question for CR2. introduced, e.g. `cr2_p`, this newly added question needs to be included the `CountValue(1,...)` expression at `CR2_SUM`. The sample applies vice versa if any of CR2.A. to CR2.O. are removed. 
+
+* <b>cr4</b>  
+Similar to hint for `CR2_SUM`, adjust the list of category titles based on new or removed questions at `cr2_*`. In addition, adjust the filter expression. This expression at `cr4` ensures that only domains are displayed for which bribery actually has occurred (based on `cr(a-o)_1`). 
+
+* <b>cr8</b>  
+Similar to hint for `CR2_SUM`, if questions are added or removed from list of questions CR1.A. to CR1.O., this revision needs to be incorporated into the enabling condition of `cr8`. 
 </details>  
 
 <br>

@@ -232,7 +232,7 @@ be mentioned in the [section specific hints](#section-specific-hints)
 Click to see the list of placeholders
 </summary>
 
--   <b>\[!!!INSERTCOUNTRY!!!\]</b>  
+-   <b>`[!!!INSERTCOUNTRY!!!]`</b>  
     This text item is to be used across the questionnaire in various
     question texts as well as interviewer instructions. This includes
     the Introduction Text, SCR1, EPE1 or PHV0, among others. Replace it
@@ -241,12 +241,12 @@ Click to see the list of placeholders
     For example, for a project in the United Republic of Tanzania, one
     could find “\[!!!INSERTCOUNTRY!!!\]” and replace with “Tanzania”
 
--   <b>\[!!!INSERT COUNTRY NATIONALITY!!!\]</b>  
+-   <b>`[!!!INSERT COUNTRY NATIONALITY!!!]`</b>  
     Similar to placeholder above, denotes the applicable nationality
     (e.g. at D5). Based on the Tanzania example one could find
     “\[!!!INSERT COUNTRY NATIONALITY!!!\]” and replace with “Tanzanian”
 
--   <b>\[!!!LOCAL CURRENCY!!!\]</b>  
+-   <b>`[!!!LOCAL CURRENCY!!!]`</b>  
     Denotes the currency in which interviewer/respondents should report
     values, e.g. used at question D4. Replace with the short form of a
     countries currency.
@@ -326,19 +326,17 @@ additional (types) of questions.
     Those reference periods are stored in the following variables which
     are placed into the Introduction (INT) section:
 
-    -   <i>yoi</i> - Year of Interview (e.g. “2021”)
-    -   <i>yoi\_minus2</i> - Year of Interview minus 2 years
-        (e.g. “2019”)
-    -   <i>yoi\_minus5</i> - Year of Interview minus 5 years
-        (e.g. “2016”)
-    -   <i>myoi\_minus1</i> - Month and Year of Interview minus 1 year
-        (e.g “August 2020”)
+    -   `yoi` - Year of Interview (e.g. “2021”)
+    -   `yoi_minus2` - Year of Interview minus 2 years (e.g. “2019”)
+    -   `yoi_minus5` - Year of Interview minus 5 years (e.g. “2016”)
+    -   `myoi_minus1` - Month and Year of Interview minus 1 year (e.g
+        “August 2020”)
 
-    Since it is important to capture an answer to
-    <i>datetime\_interview</i>, the current template contains a static
-    text which is displayed until an answer is recorded. Interviewers
-    will not be displayed the consent form and consent question until
-    then. Adjust the respective enabling conditions if deemed necessary.
+    Since it is important to capture an answer to `datetime_interview`,
+    the current template contains a static text which is displayed until
+    an answer is recorded. Interviewers will not be displayed the
+    consent form and consent question until then. Adjust the respective
+    enabling conditions if deemed necessary.
 
 -   <b>INT1/Consent Form</b>  
     The Introduction Text / Consent Form is stored in a static text.
@@ -349,7 +347,7 @@ additional (types) of questions.
 
 -   <b>consent</b>  
     The consent is obtained through a simple Yes/No question. You can
-    also consider to obtain verbally recorded consent through the use of
+    consider to obtain verbally recorded consent through the use of
     question type
     [Audio](https://docs.mysurvey.solutions/questionnaire-designer/questions/audio-question/)
     or written consent using the
@@ -357,12 +355,12 @@ additional (types) of questions.
     question along with its [signature
     capture](https://docs.mysurvey.solutions/questionnaire-designer/questions/capturing-signatures-with-a-picture-question/)
     feature.  
-    Consider to add questions or static texts if respondents refuse to
-    provide consent (`consent==2`). This often implies displaying
-    instructions in static texts to interviewers that provide
-    information on how to proceed, e.g. completing the interview and
-    informing their supervisor, or asking the interviewer for reasons of
-    refusal.
+    Users are advised to consider to add questions or static texts if
+    respondents refuse to provide consent (`consent==2`). This often
+    implies displaying instructions in static texts to interviewers that
+    provide information on how to proceed, e.g. completing the interview
+    and informing their supervisor, or asking the interviewer for
+    reasons of refusal usingt text questions.
 
 </details>
 <details>
@@ -379,7 +377,7 @@ additional (types) of questions.
     -   Category Titles should be mapped to nationally relevant types of
         education levels
     -   Consider to add validation conditions based on age reported in
-        <i>d2</i>
+        `d2`
 
 -   <b>d0</b> and <b>d1</b>  
     Add “intersex” only if country allowed intersex as a third gender on
@@ -442,6 +440,58 @@ has consequences in subsequent sections.
     operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other).
     Carefully revise the expression if any of `src3_a`, `src3_b` or
     `src3_c` are dropped or revised.
+
+</details>
+<details>
+<summary>
+<b>Governance</b>
+</summary>
+
+-   <b>cv4\_a</b> and <b>cv4\_b</b>  
+    Adjust category title for category value 1 based on election cycle
+    in country.
+
+-   <b>Introduction text</b> for sub-section <i>Last experience of
+    public services (SPS)</i>  
+    Adjust placeholder `[!!!PUBLICHEALTHCLINIC!!!]`
+
+-   <b>sps\_e1</b> Revise age range (4-16 years old) with the
+    appropriate age range spanning primary and secondary education in
+    the country
+
+-   <b>sps\_g1/sps\_g2/sps\_g5</b>, and <b>sps\_g3/sps\_g6</b>  
+    Government-issued identification documents need to be tailored to
+    national context. If additional documents are listed, a new question
+    for SPS.G3 needs to be added, e.g. `sps_g3_f`. In addition, include
+    the respective document to the list of categorical answers at
+    `sps_g6`.
+
+</details>
+<details>
+<summary>
+<b>Corruption</b>
+</summary>
+
+-   <b>CR2\_SUM</b>  
+    This variable sums up the number of YES responses to questions
+    `cr2_*`. It reflects the number of domains where bribery has
+    occurred in the past 12 months. If a new type of official is added
+    and therefore a new question for CR2. introduced, e.g. `cr2_p`, this
+    newly added question needs to be included the `CountValue(1,...)`
+    expression at `CR2_SUM`. The sample applies vice versa if any of
+    CR2.A. to CR2.O. are removed.
+
+-   <b>cr4</b>  
+    Similar to hint for `CR2_SUM`, adjust the list of category titles
+    based on new or removed questions at `cr2_*`. In addition, adjust
+    the filter expression. This expression at `cr4` ensures that only
+    domains are displayed for which bribery actually has occurred (based
+    on `cr(a-o)_1`).
+
+-   <b>cr8</b>  
+    Similar to hint for `CR2_SUM`, if questions are added or removed
+    from list of questions CR1.A. to CR1.O., this revision needs to be
+    incorporated into the enabling condition of `cr8`.
 
 </details>
 
