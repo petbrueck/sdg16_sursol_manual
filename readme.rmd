@@ -134,14 +134,14 @@ Please find below a list of placeholders that reocurr multiple times. Users are 
 <details>
   <summary>Click to see the list of placeholders</summary>
 
-* <b>`[!!!INSERTCOUNTRY!!!]`</b>  
+* **`[!!!INSERTCOUNTRY!!!]`**  
 This text item is to be used across the questionnaire in various question texts as well as interviewer instructions. This includes the Introduction Text, SCR1, EPE1 or PHV0, among others. Replace it with the respective country name in which the questionnaire is to be used. Discuss with your team which notation to use.  
 For example, for a project in the United Republic of Tanzania, one could find "[!!!INSERTCOUNTRY!!!]" and replace with "Tanzania"
 
-* <b>`[!!!INSERT COUNTRY NATIONALITY!!!]`</b>  
+* **`[!!!INSERT COUNTRY NATIONALITY!!!]`**  
 Similar to placeholder above, denotes the applicable nationality (e.g. at D5). Based on the Tanzania example one could find "[!!!INSERT COUNTRY NATIONALITY!!!]" and replace with "Tanzanian"
  
-* <b>`[!!!LOCAL CURRENCY!!!]`</b>  
+* **`[!!!LOCAL CURRENCY!!!]`**  
 Denotes the currency in which interviewer/respondents should report values, e.g. used at question D4. Replace with the short form of a countries currency. 
 </details>
 
@@ -170,10 +170,10 @@ It is up to the user to provide other specific labels which will be associated t
 <details>
   <summary><b>Introduction (INT)</b></summary>  
 
-* <b>urb (Level of urbanisation)</b>  
+* **urb (Level of urbanisation)**  
 This question has [question scope](https://docs.mysurvey.solutions/questionnaire-designer/questions/question-scope-/) HIDDEN in the template and is therefore destined to be pre-filled during creation of assignments. Decide if you want to change the question scope to Interviewer or Supervisor. You could also discuss to delete this question from the interview script itself and rather create it during data analysis. 
 
-* <b>datetime_interview</b>  
+* **datetime_interview**  
 This [Date](https://docs.mysurvey.solutions/questionnaire-designer/questions/date-question/) question aims to capture current date and time when interviewer are starting the interview. Based on the value/answer of this question, Survey Solutions will render dynamically various reference periods across the questionnaire using [text substitution](https://docs.mysurvey.solutions/questionnaire-designer/techniques/text-substitution/).  
 Those reference periods are stored in the following variables which are placed into the Introduction (INT) section:  
   * `yoi` - Year of Interview (e.g. "2021")
@@ -183,10 +183,10 @@ Those reference periods are stored in the following variables which are placed i
 
   Since it is important to capture an answer to `datetime_interview`, the current template contains a static text which is displayed until an answer is recorded. Interviewers will not be displayed the consent form and consent question until then. Adjust the respective enabling conditions if deemed necessary. 
 
-* <b>INT1/Consent Form</b>  
+* **INT1/Consent Form**  
 The Introduction Text / Consent Form is stored in a static text. Users are advised to revise it substantially according to local protocols and best practices! For example, delete/revise the existing placeholders, e.g. the approximate amount of minutes needed for the interview. 
 
-* <b>consent</b>  
+* **consent**  
 The consent is obtained through a simple Yes/No question. You can consider to obtain verbally recorded consent through the use of question type [Audio](https://docs.mysurvey.solutions/questionnaire-designer/questions/audio-question/) or written consent using the [Picture](https://docs.mysurvey.solutions/questionnaire-designer/questions/picture-question/) question along with its [signature capture](https://docs.mysurvey.solutions/questionnaire-designer/questions/capturing-signatures-with-a-picture-question/) feature.  
 Users are advised to consider to add questions or static texts if respondents refuse to provide consent (`consent==2`). This often implies displaying instructions in static texts to interviewers that provide information on how to proceed, e.g. completing the interview and informing their supervisor, or asking the interviewer for reasons of refusal usingt text questions.
 </details>
@@ -194,35 +194,35 @@ Users are advised to consider to add questions or static texts if respondents re
 <details>
   <summary><b>Socio-demographic variables</b></summary>  
 
-* <b>d2</b>  
+* **d2**  
 Validation condition 3: Checks if respondent is younger than 18 years. Adjust if you include younger respondents in your sample. 
 
-* <b>d3</b>  
+* **d3**  
   * Category Titles should be mapped to nationally relevant types of education levels
   * Consider to add validation conditions based on age reported in `d2`
 
-* <b>d0</b> and <b>d1</b>  
+* **d0** and **d1**  
 Add "intersex" only if country allowed intersex as a third gender on birth certificates
 
-* <b>d4</b>  
+* **d4**  
 Consider to add validation conditions to flag error or provide warnings if very low or high values are reported. Must be based on local currency / income distribution.
 
-* <b>d4_cat</b>  
+* **d4_cat**  
 Update category titles based on national household level income statistics
 
-* <b>d4_exp</b>  
+* **d4_exp**  
 Don't forget to adjust the placeholders "...[!!!FILL IN AMOUNT HERE!!!] [!!!LOCAL CURRENCY!!!].." based on 25% of the monthly relative poverty threshold for a household of one component
 
-* <b>d6_a</b>, <b>d6b</b> and <b>d6c</b>  
+* **d6_a**, **d6b** and **d6c**  
 Update category title for category value 1: Decide if "(The current territory of)" to be removed
 
-* <b>d7</b>  
+* **d7**  
 Update category titles that are usually used to clarify ethnic / racial background
 
-* <b>d9</b>  
+* **d9**  
 Update category titles with nationally relevant denominations 
 
-* <b>d12 (Proxy Respondent)</b>  
+* **d12 (Proxy Respondent)**  
 Consider to add instructions based on the protocol that you define for proxy respondents. For now, a simple static text is enabled if `d12==2`. Consider to revise the text of the existing static text, add additional questions and/or static texts etc..  
 
     Please note: If you will not allow for proxy respondents, i.e. the interview shall be completed if `d12==2`, you'd need to update all enabling conditions for all subsequent sections to  
@@ -238,7 +238,7 @@ Consider to add instructions based on the protocol that you define for proxy res
   <summary><b>General screeners (SCR)</b></summary>  
 This section contains several questions that are referenced throughout the questionnaire. If questions are dropped, carefully revise if this has consequences in subsequent sections. 
 
-* Variable <b>ips</b>  
+* Variable **ips**  
 This variable is a dummy that takes values "1" and "0". It resembles the family intimate partner status. According to the paper questionnaire, it takes value 1 if any response to question `src3_a`, `src3_b` or `src3_c` is "Yes". The expression makes use of the C# [conditional expression operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other). Carefully revise the expression if any of `src3_a`, `src3_b` or `src3_c` are dropped or revised. 
 </details>  
 
@@ -247,16 +247,16 @@ This variable is a dummy that takes values "1" and "0". It resembles the family 
 <details>
   <summary><b>Governance</b></summary>  
   
-* <b>cv4_a</b>  and <b>cv4_b</b>  
+* **cv4_a**  and **cv4_b**  
 Adjust category title for category value 1 based on election cycle in country. 
 
-* <b>Introduction text</b> for sub-section <i>Last experience of public services (SPS)</i>  
+* **Introduction text** for sub-section *Last experience of public services (SPS)*  
 Adjust placeholder `[!!!PUBLICHEALTHCLINIC!!!]` 
 
-* <b>sps_e1</b>
+* **sps_e1**
 Revise age range (4-16 years old) with the appropriate age range spanning primary and secondary education in the country
 
-* <b>sps_g1/sps_g2/sps_g5</b>, and <b>sps_g3/sps_g6</b>  
+* **sps_g1/sps_g2/sps_g5**, and **sps_g3/sps_g6**  
 Government-issued identification documents need to be tailored to national context. If additional documents are listed, a new question for SPS.G3 needs to be added, e.g. `sps_g3_f`. In addition, include the respective document to the list of categorical answers at `sps_g6`.
 
 </details>  
@@ -265,15 +265,56 @@ Government-issued identification documents need to be tailored to national conte
 <details>
   <summary><b>Corruption</b></summary>  
   
-* <b>CR2_SUM</b>  
-This variable sums up the number of YES responses to questions `cr2_*`. It reflects the number of domains where bribery has occurred in the past 12 months. 
-If a new type of official is added and therefore a new question for CR2. introduced, e.g. `cr2_p`, this newly added question needs to be included the `CountValue(1,...)` expression at `CR2_SUM`. The sample applies vice versa if any of CR2.A. to CR2.O. are removed. 
+  
+- **Randomization**  
+Following the questionnaire, one needs to randomly select a type of official for which bribery has occurred in the past 12 months (YES responses to `cr2_*`). To allow for two ore more translations as well the constraint to not make use of [Rosters](https://docs.mysurvey.solutions/questionnaire-designer/components/rosters/), the template CAPI script follows a non-standard way of randomization using Survey Solutions. The following items describe aspects one needs to consider when adjusting the template.  
+**Please note:** Users are advised to adjust this section extra carefully. 
+  
+    - **cr2_a** - **cr2_o**  
+    To uniquely identify the YES responses to the set of categorical single-select questions `cr2_a` - `cr2_o`, the respective category values for category title "Yes" need to be unique across the questions. `cr_2a` starts with `101`, `cr2_b` uses `102` and so forth. Double check the response codes of **all** questions if you add or delete a type of official from this set of questions `cr2_a` - `cr2_o`.  
+    **Attention**: You need to use codes 100 or above for YES responses to have variable `CR2_SUM` correctly calculating the number of YES responses.
 
-* <b>cr4</b>  
-Similar to hint for `CR2_SUM`, adjust the list of category titles based on new or removed questions at `cr2_*`. In addition, adjust the filter expression. This expression at `cr4` ensures that only domains are displayed for which bribery actually has occurred (based on `cr(a-o)_1`). 
+    - **CR2_SUM**  
+    This variable sums up the number of YES responses to questions `cr2_*`. It reflects the number of domains where bribery has occurred in the past 12 months. 
+    If a new type of official is added and therefore a new question for CR2. introduced, e.g. `cr2_p`, this newly added question needs to be included to the expression at `CR2_SUM`. The same applies vice versa, i.e. if any of `cr2_a` to `cr2_o` are removed.  
+    
+    - **CR2_SEL_code**  
+    This variable randomly selects the category value from the list of YES responses to questions `cr2_*`. For example, if `cr2_n` was among the list of yes responses and has been randomly selected, the variable will store the code `114`.  Similar to `CR2_SUM`, add or remove questions from the expression as necessary.  
+    **Attention**: You must keep the "Do not export" checkbox **unticked**, as this variable will need to be available in the data after export to draw conclusions on which type of official has been randomly selected. 
+    
+    - **CR2_SEL**  
+    To render the selected type of official in subsequent instructions in at least one language, `CR2_SEL` is used. Again, users need to adjust the list of type of officials in the string array, if officials are added or removed.  
+    **Attention**: The order of the elements in the array need to reflect the category values of the respective type of officials. For example, in the template, `cr2_a` asks about "Municipal or provincial officials" and the corresponding YES value is `101`. This type of official is therefore listed first at `CR2_SEL`.  
+    "Social security or welfare officials" is asked at `cr2_d` and uses code `104`. It therefore needs to be listed at the fourth position in the array. If you'd change the code at `cr2_d` from `104` to `105`, you'd need to switch the position at `CR2_SEL` from fourth to fivth.  
+    **Translation**: If you are using a translation in addition to the English Original Text, you will need to manually replace the English elements in the string array at `CR2_SEL` with the respective translations of the type of officials.  If there are more than one translations to be used, unfortunately, you'd need to decide which main language should be used since only one language can be defined here.
+    
+    - **Static Texts of type of officials**  
+    There are 15 separate static texts placed before `cr4_a` that contain the respective type of officials. Each static text is enabled if the respective type of official has been randomly selected at `CR2_SEL_code`. As before, users need to adjust the content and/or enabling conditions of these static texts if changes to `cr2_a`  - `cr2_o` are introduced.  
+    **Purpose**: These static texts will also be included in the [questionnaire template in excel format](https://docs.mysurvey.solutions/questionnaire-designer/toolbar/multilingual-questionnaires/) for translation. The aim is therefore to display the type of officials at least once in any language/translation if users need 2 or more translations, which is not possible at `CR2_SEL`. Since one can not use static texts for substitution, `CR2_SEL` is used to substitute the randomly selected type of officials in interviewer instructions at subsequent questions.  
 
-* <b>cr8</b>  
-Similar to hint for `CR2_SUM`, if questions are added or removed from list of questions CR1.A. to CR1.O., this revision needs to be incorporated into the enabling condition of `cr8`. 
+
+* **cr5**  
+Adjust category titles to local currency unit with “natural” bands of similar worth to these USD values. 
+
+* **cr10**  
+Similar to hints for randomization, if questions are added or removed from list of questions `cr1_a` to `cr1_b`, this revision needs to be incorporated into the enabling condition of `cr10`: `CountValue(1,cr1_a,[...],cr1_o)>0`.
+
+* **cr8_a**  
+Adjust category titles of category values 2 and 3 based on names of respective national institutions. Additional institutions may be added for codes 04-07, where applicable.
+
+</details>  
+
+
+<details>
+  <summary><b>Discrimination (DS)</b></summary>  
+
+* **ds3** and **ds4**  
+Adjust the enabling condition if you add or remove any question to/from the set of questions `ds2_a` - `ds2_o`.
+
+* **ds4**  
+Adjust category title for category value 5.
+
+
 </details>  
 
 <br>
