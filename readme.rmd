@@ -317,5 +317,53 @@ Adjust category title for category value 5.
 
 </details>  
 
+
+<details>
+  <summary><b>Psychological violence (PSV) and Non-sexual Harassment (PHAR)</b></summary>
+
+* **PHAR_SUM**  
+If incidents are added to the list of PHAR incidents, e.g. new question `phar2_f`, include it in the expression of `PHAR_SUM`. Vice versa, if any of `phar2_a-f` is removed, remove it from the expression at this variable.
+
+* **phar5**  
+Similar to `PHAR_SUM`, if you add or remove any incident from the list of `phar*_a` - `phar*_e`, at `phar5` you need to:  
+    - Adjust the list of categorical options. For example, if `phar*_e` is removed, delete category value 5 with title *"Somebody FOLLOWED YOU AGAINST YOUR WILL,..."*
+    - Revise the filter expression. By default, the filter ensures that only incidents are displayed to the enumerator which actually occured in the past 12 months (based on `phar2_a` - `phar2_e`). If you add a question, e.g. `phar2_g` and the category value at `phar5` is 6, revise the expression to 
+    
+      ```
+      phar2_a==1 && @optioncode==1  || 
+      phar2_b==1 && @optioncode==2  || 
+      phar2_c==1 && @optioncode==3  || 
+      phar2_d==1 && @optioncode==4  || 
+      phar2_e==1 && @optioncode==5  || 
+      phar2_g==1 && @optioncode==6  ||
+      @optioncode>=98
+      ```
+
+* **vr4**  
+Adjust categorical options for values 12 - 24 to local authorities
+
+
+* **PSV_SUM**  
+Identical to instructions at `PHAR_SUM`: Revise expression if questions are added to or removed from the list of PSV incidents, e.g. new question `psv2_k`, include it in the expression of `PSV_SUM`. 
+
+* **psv5**  
+Identical to instructions at `phar5`: 
+    - Adjust the list of categorical options. For example, if `psv2_i` is removed, delete category value 9 with title *"Somebody RESTRICTED YOUR FREEDOM..."*
+    - Revise the filter expression. If you add a question, e.g. `psv2_k` and the category value at `psv5` is 12, add the expression
+    
+      ```
+      [...]
+      psv2_j==1 && @optioncode==10  || 
+      psv2_k==1 && @optioncode==12  || 
+      @optioncode>=98
+      ```
+
+* **vr5**  
+     - Decide if the optional part in question text is applicable in country context. If not, delete from question text. If applicable, remove the *"[!!!In countries where applicable, add!!!:]"* instruction and substitute placeholder *"[!!!NATIONAL EXAMPLES HERE!!!]"* with respective examples. 
+     - Adjust categorical options for values 12 - 24 to local authorities
+
+</details>  
+
+
 <br>
 To be continued (soon)
