@@ -194,36 +194,39 @@ Users are advised to consider to add questions or static texts if respondents re
 <details>
   <summary><b>Socio-demographic variables</b></summary>  
 
-* **d2**  
+* **d1**  
 Validation condition 3: Checks if respondent is younger than 18 years. Adjust if you include younger respondents in your sample. 
 
-* **d3**  
+* **d2**  
   * Category Titles should be mapped to nationally relevant types of education levels
   * Consider to add validation conditions based on age reported in `d2`
 
-* **d0** and **d1**  
-Add "intersex" only if country allowed intersex as a third gender on birth certificates
+* **d3_b**  
+Add "intersex" only if country allows intersex as a third gender on birth certificates
 
-* **d4**  
-Consider to add validation conditions to flag error or provide warnings if very low or high values are reported. Must be based on local currency / income distribution.
+* **d4_a**  
+Adjust placeholder [!!!INSERTCOUNTRY!!!]
 
-* **d4_cat**  
-Update category titles based on national household level income statistics
+* **d4_b and d4_d**  
+Makes use of [combo box](https://docs.mysurvey.solutions/questionnaire-designer/questions/categorical-single-select-question/). Uses list of all countries along with ISO 3166‑1 code. Download and adjust in case changes are necessary. 
 
-* **d4_exp**  
-Don't forget to adjust the placeholders "...[!!!FILL IN AMOUNT HERE!!!] [!!!LOCAL CURRENCY!!!].." based on 25% of the monthly relative poverty threshold for a household of one component
+* **d5_a, d5_b and d5_c**
+Attention! Adjust the placeholder [!!!INSERTCOUNTRY!!!] in the combo box: Download existing file, open the file using any text editor, replace the placeholder, save and upload new file to Designer.
 
-* **d6_a**, **d6b** and **d6c**  
-Update category title for category value 1: Decide if "(The current territory of)" to be removed
+* **d5_d**  
+Adjust placeholder [!!!INSERTCOUNTRY!!!]
 
-* **d7**  
+* **d6**  
 Update category titles that are usually used to clarify ethnic / racial background
 
-* **d9**  
+* **d8**  
 Update category titles with nationally relevant denominations 
 
-* **d12 (Proxy Respondent)**  
-Consider to add instructions based on the protocol that you define for proxy respondents. For now, a simple static text is enabled if `d12==2`. Consider to revise the text of the existing static text, add additional questions and/or static texts etc..  
+* **d11**  
+Update category titles based on national household level income statistics
+
+* **d14 (Proxy Respondent)**  
+Consider to add instructions based on the protocol that you define for proxy respondents. Such instructions could for example be displayed using a Static Text that is enabled if `d12==2`.
 
     Please note: If you will not allow for proxy respondents, i.e. the interview shall be completed if `d12==2`, you'd need to update all enabling conditions for all subsequent sections to  
 
@@ -340,7 +343,7 @@ Similar to `PHAR_SUM`, if you add or remove any incident from the list of `phar*
       ```
 
 * **vr4**  
-Adjust categorical options for values 12 - 24 to local authorities
+Adjust categorical titles for values 12 - 24 using local authorities
 
 
 * **PSV_SUM**  
@@ -360,7 +363,7 @@ Identical to instructions at `phar5`:
 
 * **vr5**  
      - Decide if the optional part in question text is applicable in country context. If not, delete from question text. If applicable, remove the *"[!!!In countries where applicable, add!!!:]"* instruction and substitute placeholder *"[!!!NATIONAL EXAMPLES HERE!!!]"* with respective examples. 
-     - Adjust categorical options for values 12 - 24 to local authorities
+     - Adjust categorical titles for values 12 - 24 using local authorities
 
 </details>  
 
