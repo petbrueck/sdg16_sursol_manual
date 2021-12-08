@@ -315,7 +315,7 @@ additional (types) of questions.
     to delete this question from the interview script itself and rather
     create it during data analysis.
 
--   **datetime\_interview**  
+-   **datetime_interview**  
     This
     [Date](https://docs.mysurvey.solutions/questionnaire-designer/questions/date-question/)
     question aims to capture current date and time when interviewer are
@@ -368,51 +368,53 @@ additional (types) of questions.
 <b>Socio-demographic variables</b>
 </summary>
 
--   **d2**  
+-   **d1**  
     Validation condition 3: Checks if respondent is younger than 18
     years. Adjust if you include younger respondents in your sample.
 
--   **d3**
+-   **d2**
 
     -   Category Titles should be mapped to nationally relevant types of
         education levels
     -   Consider to add validation conditions based on age reported in
         `d2`
 
--   **d0** and **d1**  
-    Add “intersex” only if country allowed intersex as a third gender on
+-   **d3_b**  
+    Add “intersex” only if country allows intersex as a third gender on
     birth certificates
 
--   **d4**  
-    Consider to add validation conditions to flag error or provide
-    warnings if very low or high values are reported. Must be based on
-    local currency / income distribution.
+-   **d4_a**  
+    Adjust placeholder \[!!!INSERTCOUNTRY!!!\]
 
--   **d4\_cat**  
-    Update category titles based on national household level income
-    statistics
+-   **d4_b and d4_d**  
+    Makes use of [combo
+    box](https://docs.mysurvey.solutions/questionnaire-designer/questions/categorical-single-select-question/).
+    Uses list of all countries along with ISO 3166‑1 code. Download and
+    adjust in case changes are necessary.
 
--   **d4\_exp**  
-    Don’t forget to adjust the placeholders “…\[!!!FILL IN AMOUNT
-    HERE!!!\] \[!!!LOCAL CURRENCY!!!\]..” based on 25% of the monthly
-    relative poverty threshold for a household of one component
+-   **d5_a, d5_b and d5_c** Attention! Adjust the placeholder
+    \[!!!INSERTCOUNTRY!!!\] in the combo box: Download existing file,
+    open the file using any text editor, replace the placeholder, save
+    and upload new file to Designer.
 
--   **d6\_a**, **d6b** and **d6c**  
-    Update category title for category value 1: Decide if “(The current
-    territory of)” to be removed
+-   **d5_d**  
+    Adjust placeholder \[!!!INSERTCOUNTRY!!!\]
 
--   **d7**  
+-   **d6**  
     Update category titles that are usually used to clarify ethnic /
     racial background
 
--   **d9**  
+-   **d8**  
     Update category titles with nationally relevant denominations
 
--   **d12 (Proxy Respondent)**  
+-   **d11**  
+    Update category titles based on national household level income
+    statistics
+
+-   **d14 (Proxy Respondent)**  
     Consider to add instructions based on the protocol that you define
-    for proxy respondents. For now, a simple static text is enabled if
-    `d12==2`. Consider to revise the text of the existing static text,
-    add additional questions and/or static texts etc..
+    for proxy respondents. Such instructions could for example be
+    displayed using a Static Text that is enabled if `d12==2`.
 
     Please note: If you will not allow for proxy respondents, i.e. the
     interview shall be completed if `d12==2`, you’d need to update all
@@ -436,7 +438,7 @@ has consequences in subsequent sections.
     the family intimate partner status. According to the paper
     questionnaire, it takes value 1 if any response to question
     `src3_a`, `src3_b` or `src3_c` is “Yes”. The expression makes use of
-    the C\# [conditional expression
+    the C# [conditional expression
     operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other).
     Carefully revise the expression if any of `src3_a`, `src3_b` or
     `src3_c` are dropped or revised.
@@ -447,7 +449,7 @@ has consequences in subsequent sections.
 <b>Governance</b>
 </summary>
 
--   **cv4\_a** and **cv4\_b**  
+-   **cv4_a** and **cv4_b**  
     Adjust category title for category value 1 based on election cycle
     in country.
 
@@ -455,10 +457,10 @@ has consequences in subsequent sections.
     services (SPS)*  
     Adjust placeholder `[!!!PUBLICHEALTHCLINIC!!!]`
 
--   **sps\_e1** Revise age range (4-16 years old) with the appropriate
+-   **sps_e1** Revise age range (4-16 years old) with the appropriate
     age range spanning primary and secondary education in the country
 
--   **sps\_g1/sps\_g2/sps\_g5**, and **sps\_g3/sps\_g6**  
+-   **sps_g1/sps_g2/sps_g5**, and **sps_g3/sps_g6**  
     Government-issued identification documents need to be tailored to
     national context. If additional documents are listed, a new question
     for SPS.G3 needs to be added, e.g. `sps_g3_f`. In addition, include
@@ -483,7 +485,7 @@ has consequences in subsequent sections.
     **Please note:** Users are advised to adjust this section extra
     carefully.
 
-    -   **cr2\_a** - **cr2\_o**  
+    -   **cr2_a** - **cr2_o**  
         To uniquely identify the YES responses to the set of categorical
         single-select questions `cr2_a` - `cr2_o`, the respective
         category values for category title “Yes” need to be unique
@@ -495,7 +497,7 @@ has consequences in subsequent sections.
         responses to have variable `CR2_SUM` correctly calculating the
         number of YES responses.
 
-    -   **CR2\_SUM**  
+    -   **CR2_SUM**  
         This variable sums up the number of YES responses to questions
         `cr2_*`. It reflects the number of domains where bribery has
         occurred in the past 12 months. If a new type of official is
@@ -504,7 +506,7 @@ has consequences in subsequent sections.
         the expression at `CR2_SUM`. The same applies vice versa,
         i.e. if any of `cr2_a` to `cr2_o` are removed.
 
-    -   **CR2\_SEL\_code**  
+    -   **CR2_SEL_code**  
         This variable randomly selects the category value from the list
         of YES responses to questions `cr2_*`. For example, if `cr2_n`
         was among the list of yes responses and has been randomly
@@ -516,7 +518,7 @@ has consequences in subsequent sections.
         data after export to draw conclusions on which type of official
         has been randomly selected.
 
-    -   **CR2\_SEL**  
+    -   **CR2_SEL**  
         To render the selected type of official in subsequent
         instructions in at least one language, `CR2_SEL` is used. Again,
         users need to adjust the list of type of officials in the string
@@ -566,7 +568,7 @@ has consequences in subsequent sections.
     needs to be incorporated into the enabling condition of `cr10`:
     `CountValue(1,cr1_a,[...],cr1_o)>0`.
 
--   **cr8\_a**  
+-   **cr8_a**  
     Adjust category titles of category values 2 and 3 based on names of
     respective national institutions. Additional institutions may be
     added for codes 04-07, where applicable.
@@ -590,7 +592,7 @@ has consequences in subsequent sections.
 <b>Psychological violence (PSV) and Non-sexual Harassment (PHAR)</b>
 </summary>
 
--   **PHAR\_SUM**  
+-   **PHAR_SUM**  
     If incidents are added to the list of PHAR incidents, e.g. new
     question `phar2_f`, include it in the expression of `PHAR_SUM`. Vice
     versa, if any of `phar2_a-f` is removed, remove it from the
@@ -619,9 +621,9 @@ has consequences in subsequent sections.
             @optioncode>=98
 
 -   **vr4**  
-    Adjust categorical options for values 12 - 24 to local authorities
+    Adjust categorical titles for values 12 - 24 using local authorities
 
--   **PSV\_SUM**  
+-   **PSV_SUM**  
     Identical to instructions at `PHAR_SUM`: Revise expression if
     questions are added to or removed from the list of PSV incidents,
     e.g. new question `psv2_k`, include it in the expression of
@@ -650,7 +652,7 @@ has consequences in subsequent sections.
         applicable, remove the *“\[!!!In countries where applicable,
         add!!!:\]”* instruction and substitute placeholder
         *“\[!!!NATIONAL EXAMPLES HERE!!!\]”* with respective examples.
-    -   Adjust categorical options for values 12 - 24 to local
+    -   Adjust categorical titles for values 12 - 24 using local
         authorities
 
 </details>
