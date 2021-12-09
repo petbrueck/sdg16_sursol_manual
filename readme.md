@@ -1,6 +1,6 @@
 Manual - SDG16 Survey Solutions Questionnaire Template
 ================
-First draft as of 17/02/2021. To be extended and improved!
+Draft as of 2021/12/08. To be extended and improved!
 
 -   [Introduction](#introduction)
 -   [First steps](#first-steps)
@@ -453,19 +453,30 @@ has consequences in subsequent sections.
     Adjust category title for category value 1 based on election cycle
     in country.
 
+-   **cv4_a** Amend to “legislative and presidential national elections”
+    if this is ambiguous
+
+-   **cv4_b** Adapt to the nationally used term for municipal elections
+    in the local translation
+
 -   **Introduction text** for sub-section *Last experience of public
     services (SPS)*  
     Adjust placeholder `[!!!PUBLICHEALTHCLINIC!!!]`
 
--   **sps_e1** Revise age range (4-16 years old) with the appropriate
+-   **sps_e1** Revise age range (5-18 years old) with the appropriate
     age range spanning primary and secondary education in the country
 
--   **sps_g1/sps_g2/sps_g5**, and **sps_g3/sps_g6**  
+-   **sps_g1, sps_g3, sps_g5, sps_g6**  
     Government-issued identification documents need to be tailored to
     national context. If additional documents are listed, a new question
     for SPS.G3 needs to be added, e.g. `sps_g3_f`. In addition, include
     the respective document to the list of categorical answers at
     `sps_g6`.
+
+-   **sps_g2**  
+    Replace ‘civil registration services or other relevant agencies’
+    with the name of the particular agency(ies) responsible for issuing
+    such identification documents in the country
 
 </details>
 <details>
@@ -579,12 +590,10 @@ has consequences in subsequent sections.
 <b>Discrimination (DS)</b>
 </summary>
 
--   **ds3** and **ds4**  
-    Adjust the enabling condition if you add or remove any question
-    to/from the set of questions `ds2_a` - `ds2_o`.
-
--   **ds4**  
-    Adjust category title for category value 5.
+-   **ds3** and **ds4** Adjust the enabling condition if you add or
+    remove any question to/from the set of questions `ds2_a` - `ds2_x`.
+    Needs to be ensured that any ‘YES’ response of discrimination in
+    past 12 months is captured
 
 </details>
 <details>
