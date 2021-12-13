@@ -1,6 +1,6 @@
 Manual - SDG16 Survey Solutions Questionnaire Template
 ================
-Draft as of 2021/12/08. To be extended and improved!
+2021/12/13
 
 -   [Introduction](#introduction)
 -   [First steps](#first-steps)
@@ -596,74 +596,201 @@ has consequences in subsequent sections.
     past 12 months is captured
 
 </details>
+<!-- ##Physical violence -->
+<details>
+<summary>
+<b>Physical violence (PHV)</b>
+</summary>
+
+-   **PHV_SUM**  
+    If incidents are added to the list of PHV incidents during past 12
+    months, e.g. new question `phv2_m`, include it in the expression of
+    `PHV_SUM`. Vice versa, if any of `phv2_a-x` is removed, remove it
+    from the expression at this variable.
+
+-   **phv5**  
+    Similar to `PHV_SUM`, if you add or remove any incident from the
+    list of `phv*_a` - `phar*_x`, at `phv5` you need to:
+
+    -   Adjust the list of categorical options. For example, if `phv*_g`
+        is removed, delete category value 7 with title *“Beat you with
+        their fist or a hard object, or kicked you”*
+
+    -   Revise the filter expression. By default, the filter ensures
+        that only incidents are displayed to the enumerator which
+        actually took place in the past 12 months (based on `phv2_a` -
+        `phv2_e`). If you add a question, e.g. `phv2_m` and the category
+        value of this new category at `phv5` is 14, revise the
+        expression to
+
+            [....]
+            phv2_l==1 && @optioncode==12  || 
+            phv2_x==1 && @optioncode==13  || 
+            phv2_m==1 && @optioncode==14  || 
+
+            @optioncode>=98
+
+-   **vr1**  
+    Adjust categorical titles to match authorities in country. Use code
+    13-19 for **formal** competent authorities, use code 21+ for
+    **informal** authorities
+
+</details>
+<!-- ##SEXUAL VIOLENCE AND SEXUAL HARASSMENT -->
+<details>
+<summary>
+<b>Sexual violence (SEV) and Sexual Harassment (SHAR)</b>
+</summary>
+
+**Sexual Harassment (SHAR)**
+
+-   **SHAR_SUM**  
+    If incidents are added to the list of SHAR incidents during past 12
+    months, e.g. new question `shar2_h`, include it in the expression of
+    `SHAR_SUM`. Vice versa, if any of `shar2_a-g` is removed, remove it
+    from the expression at this variable.
+
+    -   **shar5**  
+        Similar to `SHAR_SUM`, if you add or remove any incident from
+        the list of `shar*_a` - `shar*_g`, at `shar5` you need to:
+        -   Adjust the list of categorical options. For example, if
+            `shar*_c` is removed, delete category value 3 with title
+            *“Unwanted MESSAGES, E-MAILS, CALLS OF A SEXUAL NATURE that
+            offended you”*
+
+        -   Revise the filter expression. By default, the filter ensures
+            that only incidents are displayed to the enumerator which
+            actually took place in the past 12 months (based on
+            `shar2_a` - `shar2_g`). If you add a question,
+            e.g. `shar2_h` and the category value of this new category
+            at `shar5` is 8, revise the expression to
+
+                [....]
+                shar2_f==1 && @optioncode==6  || 
+                shar2_g==1 && @optioncode==7  || 
+                shar2_h==1 && @optioncode==8  || 
+
+                @optioncode>=98
+    -   **vr2**  
+        Adjust categorical titles to match authorities in country. Use
+        code 13-19 for **formal** competent authorities, use code 21+
+        for **informal** authorities
+
+    **Sexual violence (SEV)**
+
+    -   **SEV_SUM**  
+        If incidents are added to the list of SEV incidents during past
+        12 months, e.g. new question `sev2_i`, include it in the
+        expression of `SEV_SUM`. Vice versa, if any of `sev2_a-h` is
+        removed, remove it from the expression at this variable.
+
+    -   **sev5**  
+        Similar to `SEV_SUM`, if you add or remove any incident from the
+        list of `sev*_a` - `sev*_h`, at `sev5` you need to:
+
+        -   Adjust the list of categorical options. For example, if
+            `sev*_c` is removed, delete category value 3 with title
+            *“Someone MADE YOU HAVE SEXUAL INTERCOURSE when YOU COULD
+            NOT REFUSE owing to the influence of alcohol or drugs”*
+
+        -   Revise the filter expression. By default, the filter ensures
+            that only incidents are displayed to the enumerator which
+            actually took place in the past 12 months (based on
+            `sev2_a` - `sev2_h`). If you add a question, e.g. `sev2_i`
+            and the category value of this new category at `sev5` is 9,
+            revise the expression to
+
+                [....]
+                sev2_g==1 && @optioncode==7  || 
+                sev2_h==1 && @optioncode==8  || 
+                sev2_i==1 && @optioncode==9  || 
+
+                @optioncode>=98
+
+    -   **vr3**  
+        Adjust categorical titles to match authorities in country. Use
+        code 13-19 for **formal** competent authorities, use code 21+
+        for **informal** authorities
+
+</details>
+<!-- ##Psychological violence (PSV) and Non-sexual Harassment (PHAR) -->
 <details>
 <summary>
 <b>Psychological violence (PSV) and Non-sexual Harassment (PHAR)</b>
 </summary>
 
+**Non-sexual Harassment (PHAR)**
+
 -   **PHAR_SUM**  
-    If incidents are added to the list of PHAR incidents, e.g. new
-    question `phar2_f`, include it in the expression of `PHAR_SUM`. Vice
-    versa, if any of `phar2_a-f` is removed, remove it from the
-    expression at this variable.
+    If incidents are added to the list of PHAR incidents during past 12
+    months, e.g. new question `phar2_f`, include it in the expression of
+    `PHAR_SUM`. Vice versa, if any of `phar2_a-e` is removed, remove it
+    from the expression at this variable.
 
 -   **phar5**  
     Similar to `PHAR_SUM`, if you add or remove any incident from the
     list of `phar*_a` - `phar*_e`, at `phar5` you need to:
 
     -   Adjust the list of categorical options. For example, if
-        `phar*_e` is removed, delete category value 5 with title
-        *“Somebody FOLLOWED YOU AGAINST YOUR WILL,…”*
-
+        `phar*_c` is removed, delete category value 3 with title
+        *“Somebody made OFFENSIVE OR THREATENING GESTURES to demean,
+        insult or humiliate you”*
     -   Revise the filter expression. By default, the filter ensures
         that only incidents are displayed to the enumerator which
-        actually occured in the past 12 months (based on `phar2_a` -
-        `phar2_e`). If you add a question, e.g. `phar2_g` and the
-        category value at `phar5` is 6, revise the expression to
+        actually took place in the past 12 months (based on `phar2_a` -
+        `phar2_e`). If you add a question, e.g. `phar2_f` and the
+        category value of this new category at `phar5` is 6, revise the
+        expression to
 
-            phar2_a==1 && @optioncode==1  || 
-            phar2_b==1 && @optioncode==2  || 
-            phar2_c==1 && @optioncode==3  || 
-            phar2_d==1 && @optioncode==4  || 
-            phar2_e==1 && @optioncode==5  || 
-            phar2_g==1 && @optioncode==6  ||
-            @optioncode>=98
+<!-- -->
+
+      [....]
+      phar2_d==1 && @optioncode==4  || 
+      phar2_e==1 && @optioncode==5  || 
+      phar2_f==1 && @optioncode==6  || 
+
+      @optioncode>=98
 
 -   **vr4**  
-    Adjust categorical titles for values 12 - 24 using local authorities
+    Adjust categorical titles to match authorities in country. Use code
+    13-19 for **formal** competent authorities, use code 21+ for
+    **informal** authorities
+
+**Psychological violence (PSV)**
 
 -   **PSV_SUM**  
-    Identical to instructions at `PHAR_SUM`: Revise expression if
-    questions are added to or removed from the list of PSV incidents,
-    e.g. new question `psv2_k`, include it in the expression of
-    `PSV_SUM`.
+    If incidents are added to the list of PSV incidents during past 12
+    months, e.g. new question `psv2_k`, include it in the expression of
+    `PSV_SUM`. Vice versa, if any of `psv2_a-j` is removed, remove it
+    from the expression at this variable.
 
 -   **psv5**  
-    Identical to instructions at `phar5`:
+    Similar to `PSV_SUM`, if you add or remove any incident from the
+    list of `psv*_a` - `psv*_j`, at `psv5` you need to:
 
-    -   Adjust the list of categorical options. For example, if `psv2_i`
-        is removed, delete category value 9 with title *“Somebody
-        RESTRICTED YOUR FREEDOM…”*
+    -   Adjust the list of categorical options. For example, if `psv*_c`
+        is removed, delete category value 3 with title *“Family member
+        or intimate partner EXPECTED YOU TO ASK PERMISSION TO SEE A
+        DOCTOR”*
+    -   Revise the filter expression. By default, the filter ensures
+        that only incidents are displayed to the enumerator which
+        actually took place in the past 12 months (based on `psv2_a` -
+        `psv2_j`). If you add a question, e.g. `psv2_k` and the category
+        value of this new category at `psv5` is 11, revise the
+        expression to
 
-    -   Revise the filter expression. If you add a question,
-        e.g. `psv2_k` and the category value at `psv5` is 12, add the
-        expression
+<!-- -->
 
-            [...]
-            psv2_j==1 && @optioncode==10  || 
-            psv2_k==1 && @optioncode==12  || 
-            @optioncode>=98
+    [....]
+      psv2_i==1 && @optioncode==9  || 
+      psv2_j==1 && @optioncode==10  || 
+      psv2_k==1 && @optioncode==11  || 
+      
+      @optioncode>=98
 
--   **vr5**
-
-    -   Decide if the optional part in question text is applicable in
-        country context. If not, delete from question text. If
-        applicable, remove the *“\[!!!In countries where applicable,
-        add!!!:\]”* instruction and substitute placeholder
-        *“\[!!!NATIONAL EXAMPLES HERE!!!\]”* with respective examples.
-    -   Adjust categorical titles for values 12 - 24 using local
-        authorities
+-   **vr5**  
+    Adjust categorical titles to match authorities in country. Use code
+    13-19 for **formal** competent authorities, use code 21+ for
+    **informal** authorities
 
 </details>
-
-<br> To be continued (soon)
