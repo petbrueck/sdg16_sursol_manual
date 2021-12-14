@@ -11,7 +11,7 @@ output:
 
 The following manual aims to provide an overview on necessary steps to be taken to adjust the CAPI/CATI questionnaire template script of the SDG16 Survey Module using [Survey Solutions](https://mysurvey.solutions/) and its [Designer component](https://designer.mysurvey.solutions).
 
-This, as a minimum, usually entails revising the cover page and its identifying questions as well as adapting specific questions or categorical answer options to the local context. The paper-based SDG16 Survey-based Indicators Questionnaire as well as the sections that describe the questionnaire modules in the Implementation Manual highlight all items that need to be considered and should be the main reference point for contextualization of questions and answer options itself.
+This, as a minimum, usually entails revising the cover page and its identifying questions as well as adapting specific questions or categorical answer options to the local context. The paper questionnaire "SDG16 Survey-based Indicators Questionnaire" as well as the sections that describe the questionnaire modules in the Implementation Manual highlight all items that need to be considered and should be the main reference point for contextualization of questions and answer options itself.
 
 Please note that the following guideline does not provide an introduction or training on the use of the Designer itself. Instead, some experience and a basic understanding of the Designer and its capabilities is assumed.
 
@@ -76,7 +76,7 @@ Nevertheless, if you are new to Survey Solutions, please find a list of useful l
 
 ### Accessing the template script
 
-Before this questionnaire template will be made publicly available after the pilot stage, you need to share your <u>Survey Solutions credentials</u> with the person who is the owner of the Survey Solutions script of the SDG16 module to get access to the script itself. As of February 2021, kindly approach [Peter Brueckmann](mailto:p.brueckmann@mailbox.org).
+Before this questionnaire template will be made publicly available after the pilot stage, you need to share your <u>Survey Solutions credentials</u> with the person who is the owner of the Survey Solutions script of the SDG16 module to get access to the script itself. As of January 2022, kindly approach [Peter Brueckmann](mailto:p.brueckmann@mailbox.org).
 
 If you are not registered yet, please follow the steps described [here](https://docs.mysurvey.solutions/questionnaire-designer/interface/registration-and-signing-in/).
 
@@ -264,11 +264,26 @@ Replace ‘civil registration services or other relevant agencies’ with the na
 
 </details>
 
+
+
+
+<!-- ##Corruption -->
+
+
+
 <details>
   <summary><b>Corruption</b></summary>  
   
+* **CR2_INTRO**  
+If questions are added or removed from list of questions `cr1_a` to `cr1_o`, adjust the expression of the enabling condition for this static text accordingly. For example, if you remove `cr1_o`, revise expression to 
+
+  ```
+  CountValue(1,cr1_a,cr1_b,cr1_c,cr1_d,cr1_e,cr1_f,cr1_g,cr1_h,cr1_i,cr1_j,cr1_k,cr1_l,cr1_m,cr1_n)>0
+  ```
+
+  
 - **Randomization**  
-Following the questionnaire, one needs to randomly select a type of official for which bribery has occurred in the past 12 months (YES responses to `cr2_*`). To allow for two ore more translations as well the constraint to not make use of [Rosters](https://docs.mysurvey.solutions/questionnaire-designer/components/rosters/), the template CAPI script follows a non-standard way of randomization using Survey Solutions. The following items describe aspects one needs to consider when adjusting the template.  
+Following the source questionnaire, one needs to randomly select a type of official for which bribery has occurred in the past 12 months (YES responses to `cr2_*`). To allow for two ore more translations as well the constraint to not make use of [Rosters](https://docs.mysurvey.solutions/questionnaire-designer/components/rosters/), the template CAPI script follows a non-standard way of randomization using Survey Solutions. The following items describe aspects one needs to consider when adjusting the template.  
 **Please note:** Users are advised to adjust this section extra carefully. 
   
     - **cr2_a** - **cr2_o**  
@@ -277,18 +292,27 @@ Following the questionnaire, one needs to randomly select a type of official for
 
     - **CR2_SUM**  
     This variable sums up the number of YES responses to questions `cr2_*`. It reflects the number of domains where bribery has occurred in the past 12 months. 
-    If a new type of official is added and therefore a new question for CR2. introduced, e.g. `cr2_p`, this newly added question needs to be included to the expression at `CR2_SUM`. The same applies vice versa, i.e. if any of `cr2_a` to `cr2_o` are removed.  
+    If a new type of official is added and therefore a new question for CR2. introduced, e.g. `cr2_p`, this newly added question needs to be included to the expression at `CR2_SUM`. The same applies vice versa, i.e. if any of `cr2_a` to `cr2_o` are removed, remove it from the expression at `CR2_SUM`.  
     
     - **CR2_SEL_code**  
     This variable randomly selects the category value from the list of YES responses to questions `cr2_*`. For example, if `cr2_n` was among the list of yes responses and has been randomly selected, the variable will store the code `114`.  Similar to `CR2_SUM`, add or remove questions from the expression as necessary.  
     **Attention**: You must keep the "Do not export" checkbox **unticked**, as this variable will need to be available in the data after export to draw conclusions on which type of official has been randomly selected. 
     
     - **CR2_SEL**  
-    To render the selected type of official in subsequent instructions in at least one language, `CR2_SEL` is used. Again, users need to adjust the list of type of officials in the string array, if officials are added or removed.  
-    **Attention**: The order of the elements in the array need to reflect the category values of the respective type of officials. For example, in the template, `cr2_a` asks about "Municipal or provincial officials" and the corresponding YES value is `101`. This type of official is therefore listed first at `CR2_SEL`.  
-    "Social security or welfare officials" is asked at `cr2_d` and uses code `104`. It therefore needs to be listed at the fourth position in the array. If you'd change the code at `cr2_d` from `104` to `105`, you'd need to switch the position at `CR2_SEL` from fourth to fivth.  
-    **Translation**: If you are using a translation in addition to the English Original Text, you will need to manually replace the English elements in the string array at `CR2_SEL` with the respective translations of the type of officials.  If there are more than one translations to be used, unfortunately, you'd need to decide which main language should be used since only one language can be defined here.
+    To display the selected type of official in subsequent instructions in at least one language, `CR2_SEL` is used. To this end, the [conditional expression operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other) is used. Adjust the list of type of officials along with their respective code. The value is again based on the code of "YES" responses from  `cr2_a` - `cr2_o`.    
+    **Attention**: Carefully double check that all conditions in the expression match the respective type of official E.g. if you rephrase `cr2_l` and use a different code, e.g. change from `112` to `138`, adjust the expression accordingly: 
     
+       ```
+      [....]
+  CR2_SEL_code==111 ? "Public utility officials or inspectors (electricity, water, sanitation, etc.)" :
+  CR2_SEL_code==138 ? "X/Y/Z Type of public official" :
+  CR2_SEL_code==113 ? "Car registration or driving licence agency officials" :
+      [....]
+      ```
+    **Translation**: If you are using a translation in addition to the English Original Text, you will need to manually replace the English elements in the string array at `CR2_SEL` with the respective translations of the type of officials. If there are more than one translations to be used, unfortunately, you'd need to decide which main language should be used since only one language can be defined here.
+
+
+
     - **Static Texts of type of officials**  
     There are 15 separate static texts placed before `cr4_a` that contain the respective type of officials. Each static text is enabled if the respective type of official has been randomly selected at `CR2_SEL_code`. As before, users need to adjust the content and/or enabling conditions of these static texts if changes to `cr2_a`  - `cr2_o` are introduced.  
     **Purpose**: These static texts will also be included in the [questionnaire template in excel format](https://docs.mysurvey.solutions/questionnaire-designer/toolbar/multilingual-questionnaires/) for translation. The aim is therefore to display the type of officials at least once in any language/translation if users need 2 or more translations, which is not possible at `CR2_SEL`. Since one can not use static texts for substitution, `CR2_SEL` is used to substitute the randomly selected type of officials in interviewer instructions at subsequent questions.  
@@ -297,11 +321,16 @@ Following the questionnaire, one needs to randomly select a type of official for
 * **cr5**  
 Adjust category titles to local currency unit with “natural” bands of similar worth to these USD values. 
 
-* **cr10**  
-Similar to hints for randomization, if questions are added or removed from list of questions `cr1_a` to `cr1_b`, this revision needs to be incorporated into the enabling condition of `cr10`: `CountValue(1,cr1_a,[...],cr1_o)>0`.
-
 * **cr8_a**  
 Adjust category titles of category values 2 and 3 based on names of respective national institutions. Additional institutions may be added for codes 04-07, where applicable.
+
+* **cr10**  
+Similar to `CR2_INTRO`, if questions are added or removed from list of questions `cr1_a` to `cr1_o`, this revision needs to be incorporated into the enabling condition of `cr10`. For example, if you remove `cr1_o`, revise expression to 
+
+  ```
+  CountValue(1,cr1_a,cr1_b,cr1_c,cr1_d,cr1_e,cr1_f,cr1_g,cr1_h,cr1_i,cr1_j,cr1_k,cr1_l,cr1_m,cr1_n)>0
+  ```
+
 
 </details>
 
@@ -311,9 +340,67 @@ Adjust category titles of category values 2 and 3 based on names of respective n
 * **ds3** and **ds4**
 Adjust the enabling condition if you add or remove any question to/from the set of questions `ds2_a` - `ds2_x`. Needs to be ensured that any 'YES' response of discrimination in past 12 months is captured
 
+</details>
+
+
+<!-- ##ACCESS TO JUSTICE -->
+
+
+<details>
+  <summary><b>Access to Justice (AJ)</b></summary>  
+  
+* **Introduction Static Text**  
+Substitute placeholder [!!!EVENT OF NATIONAL RELEVANCE THAT IS COMMON KNOWLEDGE!!!] accordingly to country context
+
+* **aj1_g**  
+Revise examples in question text if necessary: Lack of access to water and electricity to be added only if state managed.
+
+- **Randomization**  
+Following the source questionnaire, one needs to randomly select a dispute which has occured in the past 12 months (YES responses to `aj1_*`). To allow for two ore more translations as well the constraint to not make use of [Rosters](https://docs.mysurvey.solutions/questionnaire-designer/components/rosters/), the template CAPI script follows a non-standard way of randomization using Survey Solutions. The following items describe aspects one needs to consider when adjusting the template.  
+**Please note:** Users are advised to adjust this section extra carefully. 
+  
+    - **aj_a** - **aj1_k**  
+    To uniquely identify the YES responses to the set of categorical single-select questions `aj_a` - `aj1_k`, the respective category values for category title "Yes" need to be unique across the questions. `aj1_a` starts with `101`, `aj1_b` uses `102` and so forth. Double check the response codes of **all** questions if you add or delete a type of dispute from this set of questions `aj1_a` - `aj1_k`.  
+    **Attention**: You need to use codes 100 or above for YES responses to have variable `AJ_SUM` correctly calculating the number of YES responses.
+
+    - **AJ_SUM**  
+    This variable sums up the number of YES responses to questions `aj1_*`. It reflects the number of types of disputes that the respondend experienced in the past 12 months. 
+    If a new type of dispute is added and therefore a new question for AJ1 introduced, e.g. `aj1_m`, this newly added question needs to be included to the expression at `AJ_SUM`. Vice versa, if any of `aj_a` to `aj_k` are removed, remove the respective variable from the expression at `AJ_SUM`.  
+    
+    - **AJ1_SEL_code**  
+    This variable randomly selects the category value from the list of YES responses to questions `aj1_*`. For example, if `aj_g` was among the list of yes responses and has been randomly selected by the software through expression at this variable `AJ1_SEL_code`, the variable will store the code `107`.  Similar to `AJ_SUM`, add or remove questions from the expression as necessary.  
+    **Attention**: You must keep the "Do not export" checkbox **unticked**, as this variable will need to be available in the data after export to draw conclusions on which type of official has been randomly selected. 
+    
+    - **AJ1_SEL**  
+    To display the selected type of dispute in subsequent instructions in at least one language, `AJ1_SEL` is used. To this end, the [conditional expression operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other) is used. Adjust the list of disputes along with their respective code. The value is again based on the code of "YES" responses from  `aj_a` - `aj1_k`.    
+    **Attention**: Carefully double check that all conditions in the expression match the respective dispute. E.g. if you rephrase `aj1_e` and use a different code, e.g. change from `105` to `134`, adjust the expression accordingly: 
+    
+       ```
+      [....]
+      AJ1_SEL_code==104 ? "Seeking compensation for INJURIES OR ILLNESS":
+      AJ1_SEL_code==134 ? "XYZ TYPE OF DISPUTE":
+      AJ1_SEL_code==106 ? "Problems with GOVERNMENT PAYMENTS":
+      [....]
+
+      ```
+    **Translation**: If you are using a translation in addition to the English Original Text, you will need to manually replace the English elements in the string array at `AJ1_SEL` with the respective translations of the type of dispute  If there are more than one translations to be used, unfortunately, you'd need to decide which main language should be used since only one language can be defined here.
+    
+    - **Static Texts of type of disputes**  
+    There are 11 separate static texts placed before `aj3` that contain the respective type of dispute. Each static text is enabled if the respective type of dispute has been randomly selected at `AJ1_SEL_code`. As before, users need to adjust the content and/or enabling conditions of these static texts if changes to `aj1_a`  - `aj1_k` are introduced.  
+    **Purpose**: These static texts will also be included in the [questionnaire template in excel format](https://docs.mysurvey.solutions/questionnaire-designer/toolbar/multilingual-questionnaires/) for translation. The aim is therefore to display the type of dispute at least once in any language/translation if users need 2 or more translations, which is not possible at `AJ1_SEL`. Since one can not use static texts for substitution, `AJ1_SEL` is used to substitute the randomly selected type of officials in interviewer instructions at subsequent questions.  
 
 
 </details>
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- ##Physical violence -->
