@@ -541,5 +541,21 @@ Adjust categorical titles to match authorities in country. Use code 13-19 for **
 </details>
   
   
+  <!-- ##Trafficking in persons for forced labour (TIP) -->
+
+
+
+
+<details>
+  <summary><b>Trafficking in persons for forced labour (TIP)</b></summary>
+
+  * **tip_5**  
+  If any questions are added or removed from the list of questions for `tip_1a-tip1_g` or `tip_3a-tip_3f`, adjust the expression of enabling condition at `tip_5` accordingly
+
+* **TIP_VOT_12M and TIP_VOT_3Y**  
+  These variables indicate if the respondent was victim of trafficking for forced labor in the past 12 months / 3 years. Similar to `tip_5`: Carefully revise the expression at these variables in case questions are added or removed within this module. The conditional expression is based on the source questionnaire.
+
+</details>
   
+
 
