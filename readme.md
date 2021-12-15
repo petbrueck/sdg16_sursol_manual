@@ -212,7 +212,7 @@ well.
 
 #### Placeholders
 
-Both throughout the paper-based as well as Survey Solutions CAPI/CATI
+Both throughout the paper-based (source questionnaire) as well as Survey Solutions CAPI/CATI
 template, various placeholders have been included to allow for a simple
 adjustment of the questionnaire content to a country-specific context.
 
