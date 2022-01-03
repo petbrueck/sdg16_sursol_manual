@@ -1,6 +1,6 @@
 ---
 title: "Manual - SDG16 Survey Solutions Questionnaire Template "
-date: "2021/12/13"
+date: "2022/01/03"
 output:
   github_document:
     toc: true
@@ -175,11 +175,11 @@ To this end, users need to use a dedicated excel file produced by the Survey Sol
 Users are advised to carefully read the instructions on [multilingual questionnaires](https://docs.mysurvey.solutions/questionnaire-designer/toolbar/multilingual-questionnaires/). In addition, please find below some instructions for translators.
 
 
-<details> <summary><b>Click for detailed translation instructions</b></summary>
+<details> <summary><b>Click for detailed instructions for Translators</b></summary>
 
 _**EXCEL FILE**_
 
-* The CAPI Designer should provide the translators with a single Excel file using the Survey Solutions Designer template. 
+* The CAPI Designer should provide the translators with a single Excel file produced by the Survey Solutions Designer template. 
 * Translators must not rename the spreadsheet and must not convert to any other file format.
 
 The most important columns in the excel template: 
@@ -654,3 +654,12 @@ To further ensure no questions are left [unanswered](#unanswered-questions) by m
 
 
 </details>
+
+
+
+## Disclaimer
+
+Please report any issues with the manual or the Survey Soltuions SDG16 CAPI template script. 
+
+No responsibility or liability for the correct functionality of the CAPI script nor the completeness of this manual is taken!
+

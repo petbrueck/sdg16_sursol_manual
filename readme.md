@@ -1,6 +1,6 @@
 Manual - SDG16 Survey Solutions Questionnaire Template
 ================
-2021/12/13
+2022/01/03
 
 -   [Introduction](#introduction)
     -   [Designer Interface](#designer-interface)
@@ -22,6 +22,7 @@ Manual - SDG16 Survey Solutions Questionnaire Template
         -   [Multilingual Questionnaires
             (‘Translations’)](#multilingual-questionnaires-translations)
     -   [Section specific hints](#section-specific-hints)
+-   [Disclaimer](#disclaimer)
 
 ## Introduction
 
@@ -336,13 +337,13 @@ In addition, please find below some instructions for translators.
 
 <details>
 <summary>
-<b>Click for detailed translation instructions</b>
+<b>Click for detailed instructions for Translators</b>
 </summary>
 
 ***EXCEL FILE***
 
 -   The CAPI Designer should provide the translators with a single Excel
-    file using the Survey Solutions Designer template.
+    file produced by the Survey Solutions Designer template.
 -   Translators must not rename the spreadsheet and must not convert to
     any other file format.
 
@@ -1148,3 +1149,11 @@ respective section to facilitate locating these ‘blank’ questions.
     `!IsSectionAnswered(sec_assets)`
 
 </details>
+
+## Disclaimer
+
+Please report any issues with the manual or the Survey Soltuions SDG16
+CAPI template script.
+
+No responsibility or liability for the correct functionality of the CAPI
+script nor the completeness of this manual is taken!
