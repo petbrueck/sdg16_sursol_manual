@@ -4,14 +4,14 @@ date: "2021/12/13"
 output:
   github_document:
     toc: true
-    toc_depth: 3
+    toc_depth: 4
 ---
 
 ## Introduction
 
-The following manual aims to provide an overview on necessary steps to be taken to adjust the CAPI/CATI questionnaire template script of the SDG16 Survey Module using [Survey Solutions](https://mysurvey.solutions/) and its [Designer component](https://designer.mysurvey.solutions).
+The following manual aims to provide an overview on necessary steps to be taken to adjust the CAPI/CATI questionnaire template script of the SDG16 Survey Module using [Survey Solutions](https://mysurvey.solutions/) and its [Designer web application](https://designer.mysurvey.solutions).
 
-This, as a minimum, usually entails revising the cover page and its identifying questions as well as adapting specific questions or categorical answer options to the local context. The paper questionnaire "SDG16 Survey-based Indicators Questionnaire" as well as the sections that describe the questionnaire modules in the Implementation Manual highlight all items that need to be considered and should be the main reference point for contextualization of questions and answer options itself.
+This, as a minimum, usually entails revising the cover page and its identifying questions as well as adapting specific questions or categorical answer options to the local context. The paper source questionnaire "SDG16 Survey-based Indicators Questionnaire" as well as the sections that describe the questionnaire modules in the Implementation Manual highlight all items that need to be considered and should be the main reference point for contextualization of questions and answer options itself.
 
 Please note that the following guideline does not provide an introduction or training on the use of the Designer itself. Instead, some experience and a basic understanding of the Designer and its capabilities is assumed.
 
@@ -116,11 +116,13 @@ While incorporating changes to question texts or instructions seem trivial to be
 
 Please note: Especially if Survey Solutions Designer users are not involved in the adaption of the SDG16 module template, team members are advised to keep track on the changes made, e.g. through the Word Track Change feature, so that they can be reflected in the CAPI/CATI script as well.
 
+In the following, questions are referred to using the variable names as used in the Survey Solutions Designer, which only in few cases deviates from the paper source questionnaire.
+
 ### General notes
 
 #### Placeholders
 
-Both throughout the paper-based as well as Survey Solutions CAPI/CATI template, various placeholders have been included to allow for a simple adjustment of the questionnaire content to a country-specific context.
+Both throughout the paper-based source questionnaire as well as Survey Solutions CAPI/CATI template, various placeholders have been included to allow for a simple adjustment of the questionnaire content to a country-specific context.
 
 Within the Survey Solutions script, these placeholders are indicated through [!!!NAME OF THE PLACEHOLDER!!!]. Using the [Find and Replace](https://docs.mysurvey.solutions/questionnaire-designer/interface/find-and-replace-/) feature and the respective unique names of the placeholder will allow to adjust reoccurring text objects swiftly.
 
@@ -131,7 +133,8 @@ Please find below a list of placeholders that reocurr multiple times. Users are 
 
 * **`[!!!INSERTCOUNTRY!!!]`**  
 This text item is to be used across the questionnaire in various question texts as well as interviewer instructions. This includes the Introduction Text, SCR1, EPE1 or PHV0, among others. Replace it with the respective country name in which the questionnaire is to be used. Discuss with your team which notation to use.  
-For example, for a project in the United Republic of Tanzania, one could find "[!!!INSERTCOUNTRY!!!]" and replace with "Tanzania"
+For example, for a project in the United Republic of Tanzania, one could find "[!!!INSERTCOUNTRY!!!]" and replace with "Tanzania". 
+Please note: Questions `d5_b`, `d5_c`, `d5_d` make use of [combo boxes](https://docs.mysurvey.solutions/questionnaire-designer/questions/categorical-single-select-question/) of which some categorical answer options include placeholder "[!!!INSERTCOUNTRY!!!]". They can not be changed through [Find and Replace](https://docs.mysurvey.solutions/questionnaire-designer/interface/find-and-replace-/). Instead, manually download the list of categories, update the file using any text editor and re-upload again to the Designer. 
 
 * **`[!!!INSERT COUNTRY NATIONALITY!!!]`**  
 Similar to placeholder above, denotes the applicable nationality (e.g. at D5). Based on the Tanzania example one could find "[!!!INSERT COUNTRY NATIONALITY!!!]" and replace with "Tanzanian"
@@ -145,6 +148,109 @@ Denotes the currency in which interviewer/respondents should report values, e.g.
 By default, Survey Solutions automatically exports the question text as its [variable label](https://docs.mysurvey.solutions/questionnaire-designer/questions/general-component-properties/#variable%20label). Therefore, the large majority of questions in the SDG16 module template are not labeled. This usually facilitates data analysis if end-users can see the question text itself in the data.
 
 It is up to the user to provide other specific labels which will be associated to the variable name when exporting the data to a statistical software package.
+
+#### Unanswered questions
+
+Contrary to other data collection software, in Survey Solutions any question may be left [unanswered](https://docs.mysurvey.solutions/questionnaire-designer/techniques/mandatory-required-questions/) for reasons beyond the control of the questionnaire designer. That is, there are no "mandatory/required" questions in the Survey Solutions SDG16 CAPI template script.
+
+Data quality systems during fieldwork need to account for this and should monitor the frequency of unanswered questions which can not be explained by interviewers (e.g through comments).
+
+In addition, to highlight such unanswered questions during the interview process itself, a red warning text is rendered at the end of each section in case any unanswered questions remain in the respective section (calculated using a variable with expression using [section functions](https://docs.mysurvey.solutions/syntax-guide/functions/section-functions/)):
+
+``` html
+[ENUMERATOR:]<br><br>
+<font color="red">
+ATTENTION, THERE ARE %n_unansweredq_ds% UNANSWERED QUESTIONS IN THIS SECTION. YOU MUST NOT PROCEED BEFORE ANSWERING THE REMAINING QUESTIONS. 
+</font>
+```
+
+Consider to rephrase these warnings based on the survey project protocol. Further, in case you add sections, it is recommended to add the warnings and variables accordingly.
+
+#### Multilingual Questionnaires ('Translations')
+
+The SDG16 Pilot CAPI template is developed in English and could be administered immediately. However, in contexts where respondents of a survey speak a (or multiple) different languages, one can include those in an easy manner using the Survey Solutions software.
+
+To this end, users need to use a dedicated excel file produced by the Survey Solutions Designer, include the translation and upload the file accordingly.
+
+Users are advised to carefully read the instructions on [multilingual questionnaires](https://docs.mysurvey.solutions/questionnaire-designer/toolbar/multilingual-questionnaires/). In addition, please find below some instructions for translators.
+
+
+<details> <summary><b>Click for detailed translation instructions</b></summary>
+
+_**EXCEL FILE**_
+
+* The CAPI Designer should provide the translators with a single Excel file using the Survey Solutions Designer template. 
+* Translators must not rename the spreadsheet and must not convert to any other file format.
+
+The most important columns in the excel template: 
+
+* **Variable** - Indicating the variable name of a question as in the Questionnaire Designer, which in most cases aligns with the question coding in paper version of SDG16 template. 
+
+* **Type** - Indicates which type of text item the respective row reflects. This includes
+  * Title - Question Text itself or titles of Sections
+  * Optiontitle - The categorical answer options at a question
+  * Instruction - Instructions displayed to interviewers below a question text
+  * Validation Message - messages flagged if a response triggers an inconsistency
+  * Special Values - Similar to Optiontitle, those are options interviewers can select at numeric questions
+  
+* **Index** - Indicates the optioncode of a particular OptionTitle and usually should align with the paper-based source questionnaire
+
+* **Original text** - This column contains the text for which a translation can be entered. Depending on the type of text item (see column Type), it is either a question text, answer option, instruction etc. 
+
+* **Translation** - Column in which the translation needs to be inserted 
+
+_**GENERAL INSTRUCTIONS**_
+
+* All sheets within the excel file are to be translated. Sheets starting with `@@_` are categories that appear multiple times throughout the questionnaire.
+
+* If the translator can’t or don't need to translate the original text for any reason, the cell in column Translation should be left blank
+
+* One must not modify any other text/cells anywhere else in the spreadsheet, even if there is a typo in the original text (feel free to notify the Designer about any discovered typos or problems, but not in this file)
+
+* If there are more than one translations to be used (e.g. Russian and Kazakh), translators need to create a separate excel file. Do **NOT** include the separate translations into the same file, e.g. in a different column. 
+
+_**TEXT SUBSTITUTION**_
+
+To improve the enumerators experience, the CAPI script makes use of dynamic text substitution. Text substitutions render interview specific information, which includes the answer to a question collected earlier or a dynamic reference period, within question texts, instructions or validation conditions denoted with an identifier enclosed in percentage signs.
+
+It is **very important** to include these text substitution when a new language is transferred to the excel spreadsheet. It must be ensured that there is no typo or white space within the enclosed percentage signs. Further, any text within the enclosed percentage signs must **NOT** be translated.
+
+Example: 
+
+```
+SCR1. Please let me know if you have permanently lived in Kazakhstan for the past 12 months (since %myoi_minus1%) or not?
+``` 
+
+That is, translators need to include the `%myoi_minus1%` item into the translation itself! For a Russian translation it would be similar to: 
+
+```
+Пожалуйста, дайте мне знать, если вы постоянно проживали в Казахстане  в течение последних 12 месяцев(с %myoi_minus1% года)или нет?
+```
+
+
+_**HTML-TAGS**_
+
+Based on the paper-based source questionnaire, important text items sometimes need to be highlighted, e.g. through underlining or writing something in bold. In addition, paragraphs added on paper will help the enumerator to read out complex/long text more easily. 
+
+In Survey Solutions, as in other software, this is achieved through html-tags (e.g. `<u>TEXT</u>` for underlining). 
+These html-tags needs to be included in the translation and not to be distorted!
+
+Example:  D8.A. Do you have difficulty...<u>seeing, even if wearing glasses</u>?
+
+CAPI Designer: 
+```
+D8.A. Do you have difficulty...<u>seeing, even if wearing glasses</u>?
+``` 
+
+Translation: 
+```
+D8.A. Испытываете ли вы трудности со <u>зрением, даже если вы носите очки</u>?
+``` 
+
+
+</details>
+
+
 
 ### Section specific hints
 
@@ -203,10 +309,10 @@ Adjust placeholder [!!!INSERTCOUNTRY!!!]
 * **d4_b and d4_d**  
 Makes use of [combo box](https://docs.mysurvey.solutions/questionnaire-designer/questions/categorical-single-select-question/). Uses list of all countries along with ISO 3166‑1 code. Download and adjust in case changes are necessary. 
 
-* **d5_a, d5_b and d5_c**
+* **d5_b, d5_c and d5_d**
 Attention! Adjust the placeholder [!!!INSERTCOUNTRY!!!] in the combo box: Download existing file, open the file using any text editor, replace the placeholder, save and upload new file to Designer.
 
-* **d5_d**  
+* **d5_e**  
 Adjust placeholder [!!!INSERTCOUNTRY!!!]
 
 * **d6**  
@@ -234,7 +340,7 @@ Consider to add instructions based on the protocol that you define for proxy res
 This section contains several questions that are referenced throughout the questionnaire. If questions are dropped, carefully revise if this has consequences in subsequent sections. 
 
 * Variable **ips**  
-This variable is a dummy that takes values "1" and "0". It resembles the family intimate partner status. According to the paper questionnaire, it takes value 1 if any response to question `src3_a`, `src3_b` or `src3_c` is "Yes". The expression makes use of the C# [conditional expression operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other). Carefully revise the expression if any of `src3_a`, `src3_b` or `src3_c` are dropped or revised. 
+This variable is a dummy that takes values "1" and "0". It resembles the family intimate partner status. According to the paper source questionnaire, it takes value 1 if any response to question `src3_a`, `src3_b` or `src3_c` is "Yes". The expression makes use of the C# [conditional expression operator](https://docs.mysurvey.solutions/syntax-guide/cslanguage/syntax-guide-operators/#other). Carefully revise the expression if any of `src3_a`, `src3_b` or `src3_c` are dropped or revised. 
 </details>
 
 <details>
@@ -264,12 +370,7 @@ Replace ‘civil registration services or other relevant agencies’ with the na
 
 </details>
 
-
-
-
 <!-- ##Corruption -->
-
-
 
 <details>
   <summary><b>Corruption</b></summary>  
@@ -342,9 +443,7 @@ Adjust the enabling condition if you add or remove any question to/from the set 
 
 </details>
 
-
 <!-- ##ACCESS TO JUSTICE -->
-
 
 <details>
   <summary><b>Access to Justice (AJ)</b></summary>  
@@ -389,19 +488,17 @@ Following the source questionnaire, one needs to randomly select a dispute which
     There are 11 separate static texts placed before `aj3` that contain the respective type of dispute. Each static text is enabled if the respective type of dispute has been randomly selected at `AJ1_SEL_code`. As before, users need to adjust the content and/or enabling conditions of these static texts if changes to `aj1_a`  - `aj1_k` are introduced.  
     **Purpose**: These static texts will also be included in the [questionnaire template in excel format](https://docs.mysurvey.solutions/questionnaire-designer/toolbar/multilingual-questionnaires/) for translation. The aim is therefore to display the type of dispute at least once in any language/translation if users need 2 or more translations, which is not possible at `AJ1_SEL`. Since one can not use static texts for substitution, `AJ1_SEL` is used to substitute the randomly selected type of officials in interviewer instructions at subsequent questions.  
 
+* **aj5**  
+Adjust enabling condition of `aj5` in case any of the dispute questions `aj4_a`-`aj4_x` are removed or added. For example, if a question `aj4_i` is added, add it to the `CountValue` expression and adjust the right side of the expression: 
+
+      ```
+      CountValue(2,aj4_a,aj4_b,aj4_c,aj4_d,aj4_e,aj4_f,aj4_g,aj4_h,aj4_i,aj4_x)==10
+
+      ```
+
+
 
 </details>
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- ##Physical violence -->
 
@@ -430,12 +527,7 @@ Adjust categorical titles to match authorities in country. Use code 13-19 for **
 
 </details>
 
-
-
-
-
 <!-- ##SEXUAL VIOLENCE AND SEXUAL HARASSMENT -->
-
 
 <details>
   <summary><b>Sexual violence (SEV) and Sexual Harassment (SHAR)</b></summary>
@@ -484,14 +576,7 @@ Similar to `SEV_SUM`, if you add or remove any incident from the list of `sev*_a
 Adjust categorical titles to match authorities in country. Use code 13-19 for **formal** competent authorities, use code 21+ for **informal** authorities
 </details>
 
-
-
-
-
 <!-- ##Psychological violence (PSV) and Non-sexual Harassment (PHAR) -->
-
-
-
 
 <details>
   <summary><b>Psychological violence (PSV) and Non-sexual Harassment (PHAR)</b></summary>
@@ -539,12 +624,8 @@ Adjust categorical titles to match authorities in country. Use code 13-19 for **
 * **vr5**  
   Adjust categorical titles to match authorities in country. Use code 13-19 for **formal** competent authorities, use code 21+ for **informal** authorities
 </details>
-  
-  
-  <!-- ##Trafficking in persons for forced labour (TIP) -->
 
-
-
+<!-- ##Trafficking in persons for forced labour (TIP) -->
 
 <details>
   <summary><b>Trafficking in persons for forced labour (TIP)</b></summary>
@@ -556,6 +637,20 @@ Adjust categorical titles to match authorities in country. Use code 13-19 for **
   These variables indicate if the respondent was victim of trafficking for forced labor in the past 12 months / 3 years. Similar to `tip_5`: Carefully revise the expression at these variables in case questions are added or removed within this module. The conditional expression is based on the source questionnaire.
 
 </details>
+
+<!-- ## Unanswered questions remaining -->
+
+<details>
+  <summary><b>UNANSWERED QUESTIONS REMAINING!</b></summary>
   
+To further ensure no questions are left [unanswered](#unanswered-questions) by mistake, this section is enabled in case any of the previous sections contain any unanswered questions. A list of static texts is displayed that contain a hyperlink to the respective section to facilitate locating these 'blank' questions. 
+
+* **Enabling condition**  
+  Adjust the enabling condition in case you add or remove any section compared to the template script. 
+
+* **Static Texts**  
+  Add or remove any of the existing static texts within that section. 
+  For example, in case you add a section "Household Assets", assign this section the [variable name](https://docs.mysurvey.solutions/questionnaire-designer/components/variable-names/) `sec_assets` to that section. Add within section "UNANSWERED QUESTIONS REMAINING" a static text that is enabled if `!IsSectionAnswered(sec_assets)`
 
 
+</details>
