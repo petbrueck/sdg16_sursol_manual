@@ -168,7 +168,7 @@ Consider to rephrase these warnings based on the survey project protocol. Furthe
 
 #### Multilingual Questionnaires ('Translations')
 
-The SDG16 Pilot CAPI template is developed in English and could be administered immediately. However, in contexts where respondents of a survey speak a (or multiple) different languages, one can include those in an easy manner using the Survey Solutions software.
+The SDG16 Pilot CAPI template is developed in English.  However, in contexts where respondents of a survey speak a (or multiple) different languages, one can include those in an easy manner using the Survey Solutions software.
 
 To this end, users need to use a dedicated excel file produced by the Survey Solutions Designer, include the translation and upload the file accordingly.
 
@@ -312,8 +312,8 @@ Makes use of [combo box](https://docs.mysurvey.solutions/questionnaire-designer/
 * **d5_b, d5_c and d5_d**
 Attention! Adjust the placeholder [!!!INSERTCOUNTRY!!!] in the combo box: Download existing file, open the file using any text editor, replace the placeholder, save and upload new file to Designer.
 
-* **d5_e**  
-Adjust placeholder [!!!INSERTCOUNTRY!!!]
+* **d5_e and d5_f**  
+Adjust placeholder [!!!INSERTCOUNTRY!!!] in question text (and categorical answer option at `d5_f`)
 
 * **d6**  
 Update category titles that are usually used to clarify ethnic / racial background
